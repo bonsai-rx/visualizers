@@ -15,12 +15,38 @@ namespace Bonsai.Gui
     /// </summary>
     public abstract class ControlBuilderBase : ZeroArgumentExpressionBuilder, INamedElement
     {
+        internal readonly BehaviorSubject<bool> _Enabled = new(true);
+        internal readonly BehaviorSubject<bool> _Visible = new(true);
+
         /// <summary>
         /// Gets or sets the name of the control.
         /// </summary>
         [Category(nameof(CategoryAttribute.Design))]
         [Description("The name of the control.")]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value specifying whether the control can respond to user interaction.
+        /// </summary>
+        [Category(nameof(CategoryAttribute.Behavior))]
+        [Description("Specifies whether the control can respond to user interaction.")]
+        public bool Enabled
+        {
+            get => _Enabled.Value;
+            set => _Enabled.OnNext(value);
+        }
+
+        /// <summary>
+        /// Gets or sets a value specifying whether the control and all its child controls
+        /// are displayed.
+        /// </summary>
+        [Category(nameof(CategoryAttribute.Behavior))]
+        [Description("Specifies whether the control and all its child controls are displayed.")]
+        public bool Visible
+        {
+            get => _Visible.Value;
+            set => _Visible.OnNext(value);
+        }
 
         /// <summary>
         /// Builds the expression tree for configuring and calling the UI control.

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Windows.Forms;
 using Bonsai.Design;
+using Bonsai.Expressions;
 
 namespace Bonsai.Gui
 {
@@ -69,6 +70,20 @@ namespace Bonsai.Gui
                 .SelectMany(_ => source.ObserveOn(control))
                 .TakeUntil(handleDestroyed);
             return notifications.Subscribe(action);
+        }
+
+        internal static void SubscribeTo(this Control control, ExpressionBuilder builder)
+        {
+            if (string.IsNullOrEmpty(control.Name))
+            {
+                control.Name = ExpressionBuilder.GetElementDisplayName(builder);
+            }
+
+            if (builder is ControlBuilderBase controlBuilder)
+            {
+                control.SubscribeTo(controlBuilder._Enabled, value => control.Enabled = value);
+                control.SubscribeTo(controlBuilder._Visible, value => control.Visible = value);
+            }
         }
     }
 }

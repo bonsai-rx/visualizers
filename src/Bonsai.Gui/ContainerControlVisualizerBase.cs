@@ -59,6 +59,7 @@ namespace Bonsai.Gui
             var context = (ITypeVisualizerContext)provider.GetService(typeof(ITypeVisualizerContext));
             var controlBuilder = (TControlBuilder)ExpressionBuilder.GetVisualizerElement(context.Source).Builder;
             Control = CreateControl(provider, controlBuilder);
+            Control.SubscribeTo(controlBuilder);
 
             var visualizerService = (IDialogTypeVisualizerService)provider.GetService(typeof(IDialogTypeVisualizerService));
             visualizerService?.AddControl(Control);
