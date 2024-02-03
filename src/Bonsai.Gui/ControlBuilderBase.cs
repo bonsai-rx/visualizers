@@ -15,18 +15,12 @@ namespace Bonsai.Gui
     /// </summary>
     public abstract class ControlBuilderBase : ZeroArgumentExpressionBuilder, INamedElement
     {
-        internal readonly BehaviorSubject<string> _Name = new(string.Empty);
-
         /// <summary>
         /// Gets or sets the name of the control.
         /// </summary>
         [Category(nameof(CategoryAttribute.Design))]
         [Description("The name of the control.")]
-        public string Name
-        {
-            get => _Name.Value;
-            set => _Name.OnNext(value);
-        }
+        public string Name { get; set; }
 
         /// <summary>
         /// Builds the expression tree for configuring and calling the UI control.

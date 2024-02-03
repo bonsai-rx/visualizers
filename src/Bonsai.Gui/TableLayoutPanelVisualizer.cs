@@ -59,7 +59,6 @@ namespace Bonsai.Gui
             var panel = new TableLayoutPanel();
             panel.Dock = DockStyle.Fill;
             panel.Size = new Size(320, 240);
-            panel.Name = builder.Name;
             panelBuilder = builder;
             return panel;
         }
