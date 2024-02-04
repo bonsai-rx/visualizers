@@ -83,6 +83,7 @@ namespace Bonsai.Gui
             {
                 control.SubscribeTo(controlBuilder._Enabled, value => control.Enabled = value);
                 control.SubscribeTo(controlBuilder._Visible, value => control.Visible = value);
+                control.SubscribeTo(controlBuilder._Font, value => control.Font = value);
             }
         }
     }
