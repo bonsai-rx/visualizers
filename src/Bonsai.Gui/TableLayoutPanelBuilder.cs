@@ -30,7 +30,7 @@ namespace Bonsai.Gui
         /// Gets a collection of <see cref="ColumnStyle"/> objects specifying the size
         /// ratio of the columns in the visualizer grid layout.
         /// </summary>
-        [Category("Table Style")]
+        [Category(nameof(CategoryAttribute.Layout))]
         [Description("Specifies the optional size ratio of the columns in the visualizer grid layout.")]
         public Collection<ColumnStyle> ColumnStyles { get; } = new();
 
@@ -38,7 +38,7 @@ namespace Bonsai.Gui
         /// Gets a collection of <see cref="RowStyle"/> objects specifying the size ratio
         /// of the rows in the visualizer grid layout.
         /// </summary>
-        [Category("Table Style")]
+        [Category(nameof(CategoryAttribute.Layout))]
         [Description("Specifies the optional size ratio of the rows in the visualizer grid layout.")]
         public Collection<RowStyle> RowStyles { get; } = new();
 
@@ -46,8 +46,8 @@ namespace Bonsai.Gui
         /// Gets a collection of <see cref="TableLayoutPanelCellSpan"/> objects specifying the
         /// column and row span of each cell in the visualizer grid layout.
         /// </summary>
-        [Category("Table Style")]
         [XmlArrayItem("CellSpan")]
+        [Category(nameof(CategoryAttribute.Layout))]
         [Description("Specifies the optional column and row span of each cell in the visualizer grid layout.")]
         public Collection<TableLayoutPanelCellSpan> CellSpans { get; } = new();
     }
