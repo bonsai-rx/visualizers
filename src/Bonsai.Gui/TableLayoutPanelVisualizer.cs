@@ -98,7 +98,6 @@ namespace Bonsai.Gui
         public override void UnloadMashups()
         {
             base.UnloadMashups();
-            Control.Controls.Clear();
             Control.RowStyles.Clear();
             Control.ColumnStyles.Clear();
         }

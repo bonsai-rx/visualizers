@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 using Bonsai.Design;
 using Bonsai.Expressions;
 
@@ -18,7 +19,8 @@ namespace Bonsai.Gui
         /// <summary>
         /// Gets the active control exposed by this type visualizer.
         /// </summary>
-        protected TControl Control { get; private set; }
+        [XmlIgnore]
+        public TControl Control { get; private set; }
 
         /// <summary>
         /// Creates and configures the visual control associated with
