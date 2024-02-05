@@ -7,6 +7,8 @@ using System.Reactive.Subjects;
 using System.Reactive.Linq;
 using System.Reactive;
 using System.Linq;
+using System.Drawing;
+using System.Xml.Serialization;
 
 namespace Bonsai.Gui
 {
@@ -17,6 +19,7 @@ namespace Bonsai.Gui
     {
         internal readonly BehaviorSubject<bool> _Enabled = new(true);
         internal readonly BehaviorSubject<bool> _Visible = new(true);
+        internal readonly BehaviorSubject<Font> _Font = new(null);
 
         /// <summary>
         /// Gets or sets the name of the control.
@@ -46,6 +49,44 @@ namespace Bonsai.Gui
         {
             get => _Visible.Value;
             set => _Visible.OnNext(value);
+        }
+
+        /// <summary>
+        /// Gets or sets the font of the text displayed by the control.
+        /// </summary>
+        [XmlIgnore]
+        [Category(nameof(CategoryAttribute.Appearance))]
+        [Description("The font of the text displayed by the control.")]
+        public Font Font
+        {
+            get => _Font.Value;
+            set => _Font.OnNext(value);
+        }
+
+        /// <summary>
+        /// Gets or sets an XML representation of the font for serialization.
+        /// </summary>
+        [Browsable(false)]
+        [XmlElement(nameof(Font))]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string FontXml
+        {
+            get
+            {
+                var font = Font;
+                if (font == null || font == SystemFonts.DefaultFont) return null;
+                var converter = new FontConverter();
+                return converter.ConvertToString(Font);
+            }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    var converter = new FontConverter();
+                    Font = (Font)converter.ConvertFromString(value);
+                }
+                else Font = SystemFonts.DefaultFont;
+            }
         }
 
         /// <summary>
