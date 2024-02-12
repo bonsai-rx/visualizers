@@ -13,7 +13,7 @@ using System.Xml.Serialization;
 namespace Bonsai.Gui
 {
     /// <summary>
-    /// Provides an abstract base class with common UI control functionality.
+    /// Provides an abstract base class for common UI control functionality.
     /// </summary>
     public abstract class ControlBuilderBase : ZeroArgumentExpressionBuilder, INamedElement
     {
