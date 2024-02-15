@@ -18,9 +18,10 @@ namespace Bonsai.Gui
             checkBox.Appearance = Appearance.Button;
             checkBox.TextAlign = ContentAlignment.MiddleCenter;
             checkBox.SubscribeTo(builder._Text, value => checkBox.Text = value);
+            checkBox.SubscribeTo(builder._Checked, value => checkBox.Checked = value);
             checkBox.CheckedChanged += (sender, e) =>
             {
-                builder._CheckedChanged.OnNext(checkBox.Checked);
+                builder._Checked.OnNext(checkBox.Checked);
             };
             return checkBox;
         }
