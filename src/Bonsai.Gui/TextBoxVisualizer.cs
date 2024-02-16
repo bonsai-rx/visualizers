@@ -20,6 +20,7 @@ namespace Bonsai.Gui
                 textBox.Size = new Size(320, 240);
             }
 
+            textBox.Text = builder._Text.Value;
             textBox.SubscribeTo(builder._Multiline, value => textBox.Multiline = value);
             textBox.TextChanged += (sender, e) =>
             {
