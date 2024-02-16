@@ -27,7 +27,6 @@ namespace Bonsai.Gui
             var groupBox = new GroupBox();
             groupBox.Dock = DockStyle.Fill;
             groupBox.Size = new Size(320, 240);
-            groupBox.SubscribeTo(builder._Text, value => groupBox.Text = value);
             return groupBox;
         }
     }

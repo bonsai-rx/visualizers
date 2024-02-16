@@ -16,10 +16,10 @@ namespace Bonsai.Gui
             checkBox.Dock = DockStyle.Fill;
             checkBox.Size = new Size(300, 75);
             checkBox.Checked = builder.Checked;
-            checkBox.SubscribeTo(builder._Text, value => checkBox.Text = value);
+            checkBox.SubscribeTo(builder._Checked, value => checkBox.Checked = value);
             checkBox.CheckedChanged += (sender, e) =>
             {
-                builder._CheckedChanged.OnNext(checkBox.Checked);
+                builder._Checked.OnNext(checkBox.Checked);
             };
             return checkBox;
         }

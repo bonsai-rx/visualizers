@@ -16,10 +16,10 @@ namespace Bonsai.Gui
             radioButton.Dock = DockStyle.Fill;
             radioButton.Size = new Size(300, 75);
             radioButton.Checked = builder.Checked;
-            radioButton.SubscribeTo(builder._Text, value => radioButton.Text = value);
+            radioButton.SubscribeTo(builder._Checked, value => radioButton.Checked = value);
             radioButton.CheckedChanged += (sender, e) =>
             {
-                builder._CheckedChanged.OnNext(radioButton.Checked);
+                builder._Checked.OnNext(radioButton.Checked);
             };
             return radioButton;
         }

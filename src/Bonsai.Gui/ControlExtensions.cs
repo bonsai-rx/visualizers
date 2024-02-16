@@ -85,6 +85,11 @@ namespace Bonsai.Gui
                 control.SubscribeTo(controlBuilder._Visible, value => control.Visible = value);
                 control.SubscribeTo(controlBuilder._Font, value => control.Font = value);
             }
+
+            if (builder is TextControlBuilderBase textControlBuilder)
+            {
+                control.SubscribeTo(textControlBuilder._Text, value => control.Text = value);
+            }
         }
     }
 }

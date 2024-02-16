@@ -15,7 +15,6 @@ namespace Bonsai.Gui
             var button = new Button();
             button.Dock = DockStyle.Fill;
             button.Size = new Size(300, 150);
-            button.SubscribeTo(builder._Text, value => button.Text = value);
             button.Click += (sender, e) =>
             {
                 builder._Click.OnNext(button.Name);
