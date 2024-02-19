@@ -17,6 +17,7 @@ namespace Bonsai.Gui
         /// <summary>
         /// Gets or sets a value specifying whether the help text box is visible.
         /// </summary>
+        [Category(nameof(CategoryAttribute.Appearance))]
         [Description("Specifies whether the help text box is visible.")]
         public bool HelpVisible
         {
@@ -27,6 +28,7 @@ namespace Bonsai.Gui
         /// <summary>
         /// Gets or sets a value specifying whether the toolbar is visible.
         /// </summary>
+        [Category(nameof(CategoryAttribute.Appearance))]
         [Description("Specifies whether the toolbar is visible.")]
         public bool ToolbarVisible
         {
