@@ -15,16 +15,40 @@ namespace Bonsai.Gui
         /// <inheritdoc/>
         protected override PropertyGrid CreateControl(IServiceProvider provider, PropertyGridBuilder builder)
         {
+            var handlerRegistered = false;
             var propertyGrid = new PropertyGrid();
+            propertyGrid.Tag = builder;
             propertyGrid.Dock = DockStyle.Fill;
             propertyGrid.Size = new Size(350, 450);
             propertyGrid.Site = new ServiceProviderContext(provider);
             propertyGrid.SubscribeTo(builder._HelpVisible, value => propertyGrid.HelpVisible = value);
             propertyGrid.SubscribeTo(builder._ToolbarVisible, value => propertyGrid.ToolbarVisible = value);
+            propertyGrid.SubscribeTo(builder._RefreshProperties, value =>
+            {
+                if (value)
+                {
+                    propertyGrid.Refresh();
+                    if (!handlerRegistered)
+                    {
+                        propertyGrid.PropertyValueChanged += PropertyGrid_PropertyValueChanged;
+                        handlerRegistered = true;
+                    }
+                }
+            });
 
             var workflowBuilder = (WorkflowBuilder)provider.GetService(typeof(WorkflowBuilder));
             propertyGrid.SelectedObject = GetExpressionContext(workflowBuilder.Workflow, builder);
             return propertyGrid;
+        }
+
+        static void PropertyGrid_PropertyValueChanged(object sender, PropertyValueChangedEventArgs e)
+        {
+            var propertyGrid = (PropertyGrid)sender;
+            var builder = (PropertyGridBuilder)propertyGrid.Tag;
+            if (builder._RefreshProperties.Value)
+            {
+                propertyGrid.Refresh();
+            }
         }
 
         static ExpressionBuilderGraph GetExpressionContext(ExpressionBuilderGraph source, ExpressionBuilder target)
