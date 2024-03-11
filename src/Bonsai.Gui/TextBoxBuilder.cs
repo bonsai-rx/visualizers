@@ -9,6 +9,7 @@ namespace Bonsai.Gui
     /// a sequence of notifications whenever the text changes.
     /// </summary>
     [TypeVisualizer(typeof(TextBoxVisualizer))]
+    [Description("Interfaces with a text box control and generates a sequence of notifications whenever the text changes.")]
     public class TextBoxBuilder : TextControlBuilderBase<string>
     {
         internal readonly BehaviorSubject<bool> _Multiline = new(true);
