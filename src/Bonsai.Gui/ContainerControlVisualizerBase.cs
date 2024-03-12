@@ -29,14 +29,10 @@ namespace Bonsai.Gui
         protected abstract void AddControl(int index, Control control);
 
         /// <inheritdoc/>
-        public override void LoadMashups(IServiceProvider provider)
+        protected override void LoadMashupSource(int index, MashupSource mashupSource, IServiceProvider provider)
         {
-            for (int i = 0; i < MashupSources.Count; i++)
-            {
-                var mashupSource = MashupSources[i];
-                var containerProvider = new ContainerControlServiceProvider(i, this, mashupSource.Source, provider);
-                mashupSource.Visualizer.Load(containerProvider);
-            }
+            var containerProvider = new ContainerControlServiceProvider(index, this, mashupSource.Source, provider);
+            mashupSource.Visualizer.Load(containerProvider);
         }
 
         /// <inheritdoc/>

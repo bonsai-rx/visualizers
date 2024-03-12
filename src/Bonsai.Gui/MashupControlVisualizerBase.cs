@@ -66,9 +66,24 @@ namespace Bonsai.Gui
             for (int i = 0; i < MashupSources.Count; i++)
             {
                 var mashupSource = MashupSources[i];
-                var mashupServiceProvider = new MashupControlServiceProvider(i, this, mashupSource.Source, provider);
-                mashupSource.Visualizer.Load(mashupServiceProvider);
+                LoadMashupSource(i, mashupSource, provider);
             }
+        }
+
+        /// <summary>
+        /// Loads type visualizer resources for an individual mashup source in the
+        /// mashup visualizer.
+        /// </summary>
+        /// <param name="index">The zero-based index of the mashup source.</param>
+        /// <param name="mashupSource">The mashup source for which to load visualizer resources.</param>
+        /// <param name="provider">
+        /// A service provider object which can be used to obtain visualization,
+        /// runtime inspection, or other editing services.
+        /// </param>
+        protected virtual void LoadMashupSource(int index, MashupSource mashupSource, IServiceProvider provider)
+        {
+            var mashupServiceProvider = new MashupControlServiceProvider(index, this, mashupSource.Source, provider);
+            mashupSource.Visualizer.Load(mashupServiceProvider);
         }
 
         /// <inheritdoc/>

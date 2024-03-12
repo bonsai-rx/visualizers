@@ -8,7 +8,7 @@ using System.Reactive.Linq;
 using System.Reactive.Disposables;
 using Bonsai.Design;
 
-namespace Bonsai.Gui
+namespace Bonsai.Gui.Visualizers
 {
     /// <summary>
     /// Provides a dynamic graph control with a built-in color cycle palette.
