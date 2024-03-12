@@ -1,6 +1,8 @@
 ﻿using Bonsai.Design;
 using Bonsai.Expressions;
 using System;
+using System.Collections.Generic;
+using System.Reactive;
 using System.Windows.Forms;
 using ZedGraph;
 
@@ -11,9 +13,7 @@ namespace Bonsai.Gui.Visualizers
     /// </summary>
     public class RollingGraphVisualizer : BufferedVisualizer, IRollingGraphVisualizer
     {
-        static readonly TimeSpan TargetElapsedTime = TimeSpan.FromSeconds(1.0 / 30);
         RollingGraphBuilder.VisualizerController controller;
-        DateTimeOffset updateTime;
         RollingGraphView view;
         bool labelLines;
         bool reset;
@@ -137,10 +137,15 @@ namespace Bonsai.Gui.Visualizers
         protected override void Show(DateTime time, object value)
         {
             controller.AddValues(time, value, this);
-            if ((time - updateTime) > TargetElapsedTime)
+        }
+
+        /// <inheritdoc/>
+        protected override void ShowBuffer(IList<Timestamped<object>> values)
+        {
+            base.ShowBuffer(values);
+            if (values.Count > 0)
             {
                 view.Graph.Invalidate();
-                updateTime = time;
             }
         }
 

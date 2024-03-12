@@ -1,6 +1,8 @@
 ﻿using Bonsai.Design;
 using Bonsai.Expressions;
 using System;
+using System.Collections.Generic;
+using System.Reactive;
 using System.Windows.Forms;
 using ZedGraph;
 
@@ -159,7 +161,16 @@ namespace Bonsai.Gui.Visualizers
         public override void Show(object value)
         {
             controller.AddValues(value, this);
-            view.Graph.Invalidate();
+        }
+
+        /// <inheritdoc/>
+        protected override void ShowBuffer(IList<Timestamped<object>> values)
+        {
+            base.ShowBuffer(values);
+            if (values.Count > 0)
+            {
+                view.Graph.Invalidate();
+            }
         }
 
         /// <inheritdoc/>
