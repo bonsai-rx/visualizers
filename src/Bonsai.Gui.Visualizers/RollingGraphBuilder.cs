@@ -77,26 +77,6 @@ namespace Bonsai.Gui.Visualizers
         [Description("Specifies the optional fixed upper limit of the y-axis range.")]
         public double? Max { get; set; }
 
-        /// <summary>
-        /// Gets a value indicating whether to serialize the element selector property.
-        /// </summary>
-        /// <returns>
-        /// This method always returns <see langword="false"/> as this is an obsolete property.
-        /// </returns>
-        [Obsolete]
-        public bool ShouldSerializeElementSelector() => false;
-
-        /// <summary>
-        /// Gets or sets the names of the properties that will be displayed in the graph.
-        /// </summary>
-        [Obsolete]
-        [Browsable(false)]
-        public string ElementSelector
-        {
-            get { return ValueSelector; }
-            set { ValueSelector = value; }
-        }
-
         internal VisualizerController Controller { get; set; }
 
         internal class VisualizerController
