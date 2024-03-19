@@ -2,45 +2,42 @@
 using System.Windows.Forms;
 using ZedGraph;
 using System.Globalization;
-using System.Drawing;
 
 namespace Bonsai.Gui.Visualizers
 {
     partial class GraphPanelView : GraphPanel
     {
-        readonly ToolStripEditableLabel minEditableLabelX;
-        readonly ToolStripEditableLabel maxEditableLabelX;
-        readonly ToolStripEditableLabel minEditableLabelY;
-        readonly ToolStripEditableLabel maxEditableLabelY;
+        readonly ToolStripEditableLabel minEditableLabel;
+        readonly ToolStripEditableLabel maxEditableLabel;
         readonly ToolStripEditableLabel capacityEditableLabel;
         readonly ToolStripEditableLabel spanEditableLabel;
 
         public GraphPanelView()
         {
             InitializeComponent();
-            MasterPane = new ViewPane(MasterPane);
-            autoScaleButtonX.Checked = true;
-            autoScaleButtonY.Checked = true;
+            autoScaleButton.Checked = true;
             spanEditableLabel = new ToolStripEditableLabel(spanValueLabel, OnSpanEdit);
             capacityEditableLabel = new ToolStripEditableLabel(capacityValueLabel, OnCapacityEdit);
-            minEditableLabelX = new ToolStripEditableLabel(minStatusLabelX, OnXMinEdit);
-            maxEditableLabelX = new ToolStripEditableLabel(maxStatusLabelX, OnXMaxEdit);
-            minEditableLabelY = new ToolStripEditableLabel(minStatusLabelY, OnYMinEdit);
-            maxEditableLabelY = new ToolStripEditableLabel(maxStatusLabelY, OnYMaxEdit);
+            minEditableLabel = new ToolStripEditableLabel(minStatusLabel, OnMinEdit);
+            maxEditableLabel = new ToolStripEditableLabel(maxStatusLabel, OnMaxEdit);
             GraphPane.AxisChangeEvent += GraphPane_AxisChangeEvent;
             MouseMoveEvent += GraphPanelView_MouseMoveEvent;
             MouseClick += GraphPanelView_MouseClick;
             components.Add(spanEditableLabel);
             components.Add(capacityEditableLabel);
-            components.Add(minEditableLabelX);
-            components.Add(maxEditableLabelX);
-            components.Add(minEditableLabelY);
-            components.Add(maxEditableLabelY);
+            components.Add(minEditableLabel);
+            components.Add(maxEditableLabel);
         }
 
         protected StatusStrip StatusStrip
         {
             get { return statusStrip; }
+        }
+
+        public bool CanEditSpan
+        {
+            get { return spanEditableLabel.Enabled; }
+            set { spanEditableLabel.Enabled = value; }
         }
 
         public bool CanEditCapacity
@@ -49,25 +46,14 @@ namespace Bonsai.Gui.Visualizers
             set { capacityEditableLabel.Enabled = value; }
         }
 
-        public bool AutoScaleXVisible
+        public bool AutoScaleVisible
         {
-            get { return autoScaleButtonX.Visible; }
+            get { return autoScaleButton.Visible; }
             set
             {
-                autoScaleButtonX.Visible = value;
-                minEditableLabelX.Enabled = value;
-                maxEditableLabelX.Enabled = value;
-            }
-        }
-
-        public bool AutoScaleYVisible
-        {
-            get { return autoScaleButtonY.Visible; }
-            set
-            {
-                autoScaleButtonY.Visible = value;
-                minEditableLabelY.Enabled = value;
-                maxEditableLabelY.Enabled = value;
+                autoScaleButton.Visible = value;
+                minEditableLabel.Enabled = value;
+                maxEditableLabel.Enabled = value;
             }
         }
 
@@ -80,16 +66,10 @@ namespace Bonsai.Gui.Visualizers
             }
         }
 
-        public event EventHandler AutoScaleXChanged
+        public event EventHandler AutoScaleChanged
         {
-            add { autoScaleButtonX.CheckedChanged += value; }
-            remove { autoScaleButtonX.CheckedChanged -= value; }
-        }
-
-        public event EventHandler AutoScaleYChanged
-        {
-            add { autoScaleButtonY.CheckedChanged += value; }
-            remove { autoScaleButtonY.CheckedChanged -= value; }
+            add { autoScaleButton.CheckedChanged += value; }
+            remove { autoScaleButton.CheckedChanged -= value; }
         }
 
         public event EventHandler AxisChanged;
@@ -124,33 +104,22 @@ namespace Bonsai.Gui.Visualizers
         {
             var span = Span;
             var capacity = Capacity;
-            var scaleX = pane.XAxis.Scale;
-            var scaleY = pane.YAxis.Scale;
-            autoScaleButtonX.Checked = pane.XAxis.Scale.MaxAuto;
-            autoScaleButtonY.Checked = pane.YAxis.Scale.MaxAuto;
+            var scale = ScaleAxis.Scale;
+            autoScaleButton.Checked = scale.MaxAuto;
             spanValueLabel.Text = IsTimeSpan
                 ? TimeSpan.FromDays(span).ToString()
                 : span.ToString("G5", CultureInfo.InvariantCulture);
             capacityValueLabel.Text = capacity.ToString(CultureInfo.InvariantCulture);
-            minStatusLabelX.Text = scaleX.Min.ToString("G5", CultureInfo.InvariantCulture);
-            maxStatusLabelX.Text = scaleX.Max.ToString("G5", CultureInfo.InvariantCulture);
-            minStatusLabelY.Text = scaleY.Min.ToString("G5", CultureInfo.InvariantCulture);
-            maxStatusLabelY.Text = scaleY.Max.ToString("G5", CultureInfo.InvariantCulture);
+            minStatusLabel.Text = scale.Min.ToString("G5", CultureInfo.InvariantCulture);
+            maxStatusLabel.Text = scale.Max.ToString("G5", CultureInfo.InvariantCulture);
             OnAxisChanged(EventArgs.Empty);
         }
 
-        private void autoScaleButtonX_CheckedChanged(object sender, EventArgs e)
+        private void autoScaleButton_CheckedChanged(object sender, EventArgs e)
         {
-            AutoScaleX = autoScaleButtonX.Checked;
-            minStatusLabelX.Visible = !autoScaleButtonX.Checked;
-            maxStatusLabelX.Visible = !autoScaleButtonX.Checked;
-        }
-
-        private void autoScaleButtonY_CheckedChanged(object sender, EventArgs e)
-        {
-            AutoScaleY = autoScaleButtonY.Checked;
-            minStatusLabelY.Visible = !autoScaleButtonY.Checked;
-            maxStatusLabelY.Visible = !autoScaleButtonY.Checked;
+            AutoScale = autoScaleButton.Checked;
+            minStatusLabel.Visible = !autoScaleButton.Checked;
+            maxStatusLabel.Visible = !autoScaleButton.Checked;
         }
 
         private void OnSpanEdit(string text)
@@ -176,54 +145,19 @@ namespace Bonsai.Gui.Visualizers
             }
         }
 
-        private void OnXMinEdit(string text)
+        private void OnMinEdit(string text)
         {
             if (double.TryParse(text, out double min))
             {
-                XMin = min;
+                Min = min;
             }
         }
 
-        private void OnXMaxEdit(string text)
+        private void OnMaxEdit(string text)
         {
             if (double.TryParse(text, out double max))
             {
-                XMax = max;
-            }
-        }
-
-        private void OnYMinEdit(string text)
-        {
-            if (double.TryParse(text, out double min))
-            {
-                YMin = min;
-            }
-        }
-
-        private void OnYMaxEdit(string text)
-        {
-            if (double.TryParse(text, out double max))
-            {
-                YMax = max;
-            }
-        }
-
-        class ViewPane : MasterPane
-        {
-            public ViewPane(MasterPane masterPane)
-                : base(masterPane.Title.Text, masterPane.Rect)
-            {
-                Margin.All = 0;
-                Title.IsVisible = false;
-                Add(masterPane.PaneList[0]);
-            }
-
-            public float StatusGap { get; set; }
-
-            public override void ReSize(Graphics g, RectangleF rect)
-            {
-                rect.Height -= StatusGap;
-                base.ReSize(g, rect);
+                Max = max;
             }
         }
     }

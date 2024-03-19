@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Bonsai.Design;
+using Bonsai.Expressions;
 using ZedGraph;
 
 namespace Bonsai.Gui.Visualizers
@@ -15,7 +16,35 @@ namespace Bonsai.Gui.Visualizers
         BarSettings barSettings;
         GraphPanelBuilder graphBuilder;
 
-        internal Axis BarBaseAxis()
+        /// <summary>
+        /// Gets or sets the maximum span of data displayed at any one moment in the graph.
+        /// </summary>
+        public double Span { get; set; }
+
+        /// <summary>
+        /// Gets or sets the maximum number of points displayed at any one moment in the graph.
+        /// </summary>
+        public int Capacity { get; set; }
+
+        /// <summary>
+        /// Gets or sets the lower limit of the axis range when using a fixed scale.
+        /// </summary>
+        public double Min { get; set; }
+
+        /// <summary>
+        /// Gets or sets the upper limit of the axis range when using a fixed scale.
+        /// </summary>
+        public double Max { get; set; } = 1;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the axis range should be recalculated
+        /// automatically as the graph updates.
+        /// </summary>
+        public bool AutoScale { get; set; } = true;
+
+        internal BarSettings BarSettings => barSettings;
+
+        private Axis BarBaseAxis()
         {
             return graphBuilder.BaseAxis switch
             {
@@ -46,35 +75,76 @@ namespace Bonsai.Gui.Visualizers
 
         internal void EnsureBarSettings(BarSettings settings)
         {
-            if (barSettings == null)
-            {
-                barSettings = Control.GraphPane.BarSettings;
-                barSettings.Base = settings.Base;
-                barSettings.ClusterScaleWidth = settings.ClusterScaleWidth;
-                barSettings.ClusterScaleWidthAuto = settings.ClusterScaleWidthAuto;
-                barSettings.MinBarGap = settings.MinBarGap;
-                barSettings.MinClusterGap = settings.MinClusterGap;
-                barSettings.Type = settings.Type;
-            }
-            else
-            {
-                const string ErrorMessage = "All bar graph overlays must have identical settings.";
-                ThrowHelper.ThrowIfNotEquals(barSettings.Base, settings.Base, ErrorMessage);
-                ThrowHelper.ThrowIfNotEquals(barSettings.ClusterScaleWidth, settings.ClusterScaleWidth, ErrorMessage);
-                ThrowHelper.ThrowIfNotEquals(barSettings.ClusterScaleWidthAuto, settings.ClusterScaleWidthAuto, ErrorMessage);
-                ThrowHelper.ThrowIfNotEquals(barSettings.MinBarGap, settings.MinBarGap, ErrorMessage);
-                ThrowHelper.ThrowIfNotEquals(barSettings.MinClusterGap, settings.MinClusterGap, ErrorMessage);
-                ThrowHelper.ThrowIfNotEquals(barSettings.Type, settings.Type, ErrorMessage);
-            }
+            const string ErrorMessage = "All bar graph overlays must have bar settings compatible with the graph panel.";
+            ThrowHelper.ThrowIfNotEquals(barSettings.Base, settings.Base, ErrorMessage);
+            ThrowHelper.ThrowIfNotEquals(barSettings.ClusterScaleWidth, settings.ClusterScaleWidth, ErrorMessage);
+            ThrowHelper.ThrowIfNotEquals(barSettings.ClusterScaleWidthAuto, settings.ClusterScaleWidthAuto, ErrorMessage);
+            ThrowHelper.ThrowIfNotEquals(barSettings.MinBarGap, settings.MinBarGap, ErrorMessage);
+            ThrowHelper.ThrowIfNotEquals(barSettings.MinClusterGap, settings.MinClusterGap, ErrorMessage);
+            ThrowHelper.ThrowIfNotEquals(barSettings.Type, settings.Type, ErrorMessage);
         }
 
         /// <inheritdoc/>
         protected override GraphControl CreateControl(IServiceProvider provider, GraphPanelBuilder builder)
         {
-            var graph = new GraphPanelView();
-            graph.Dock = DockStyle.Fill;
+            var view = new GraphPanelView();
+            var context = (ITypeVisualizerContext)provider.GetService(typeof(ITypeVisualizerContext));
+            var graphPanelBuilder = (GraphPanelBuilder)ExpressionBuilder.GetVisualizerElement(context.Source).Builder;
+            var controller = graphPanelBuilder.Controller;
+            barSettings = view.GraphPane.BarSettings;
+            barSettings.Base = controller.BaseAxis;
+            barSettings.Type = controller.BarType;
+
+            if (controller.Min.HasValue || controller.Max.HasValue)
+            {
+                view.AutoScale = false;
+                view.AutoScaleVisible = false;
+                view.Min = controller.Min.GetValueOrDefault();
+                view.Max = controller.Max.GetValueOrDefault();
+            }
+            else
+            {
+                view.AutoScale = AutoScale;
+                if (!AutoScale)
+                {
+                    view.Min = Min;
+                    view.Max = Max;
+                }
+            }
+
+            if (controller.Capacity.HasValue)
+            {
+                view.Capacity = controller.Capacity.Value;
+                view.CanEditCapacity = false;
+            }
+            else
+            {
+                view.Capacity = Capacity;
+                view.CanEditCapacity = true;
+            }
+
+            if (controller.Span.HasValue)
+            {
+                view.Span = controller.Span.Value;
+                view.CanEditSpan = false;
+            }
+            else
+            {
+                view.Span = Span;
+                view.CanEditSpan = true;
+            }
+
+            view.Dock = DockStyle.Fill;
+            view.HandleDestroyed += delegate
+            {
+                Min = view.Min;
+                Max = view.Max;
+                AutoScale = view.AutoScale;
+                Capacity = view.Capacity;
+                Span = view.Span;
+            };
             graphBuilder = builder;
-            return graph;
+            return view;
         }
 
         /// <inheritdoc/>

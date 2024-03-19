@@ -8,13 +8,22 @@
     <Compile Update="BarGraphView.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="BoundedGraphPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="GraphControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="GraphPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="GraphPanel2D.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="GraphPanelView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="GraphPanelView2D.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="LineGraph.cs">
