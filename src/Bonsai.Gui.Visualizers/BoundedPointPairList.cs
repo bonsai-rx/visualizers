@@ -96,7 +96,7 @@ namespace Bonsai.Gui.Visualizers
 
         public void Add(double x, double y, double z, object tag)
         {
-            if (x >= minValue && x <= maxValue)
+            if (z >= minValue && z <= maxValue)
             {
                 points.Enqueue(x, y, z, tag);
             }
