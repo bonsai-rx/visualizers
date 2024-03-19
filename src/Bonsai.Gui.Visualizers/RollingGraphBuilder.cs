@@ -47,6 +47,13 @@ namespace Bonsai.Gui.Visualizers
         public float LineWidth { get; set; } = 1;
 
         /// <summary>
+        /// Gets the optional settings for each line added to the graph.
+        /// </summary>
+        [Category(nameof(CategoryAttribute.Appearance))]
+        [Description("Specifies optional settings for each line added to the graph.")]
+        public Collection<CurveConfiguration> CurveSettings { get; } = new();
+
+        /// <summary>
         /// Gets or sets the optional capacity used for rolling line graphs. If no capacity is specified,
         /// all data points will be displayed.
         /// </summary>
@@ -102,6 +109,7 @@ namespace Bonsai.Gui.Visualizers
             internal string[] ValueLabels;
             internal SymbolType SymbolType;
             internal float LineWidth;
+            internal CurveConfiguration[] CurveSettings;
             internal Action<DateTime, object, IRollingGraphVisualizer> AddValues;
         }
 
@@ -124,7 +132,8 @@ namespace Bonsai.Gui.Visualizers
                 Min = Min,
                 Max = Max,
                 SymbolType = SymbolType,
-                LineWidth = LineWidth
+                LineWidth = LineWidth,
+                CurveSettings = CurveSettings.ToArray()
             };
 
             var selectedIndex = GraphHelper.SelectIndexMember(timeParameter, elementVariable, IndexSelector, out Controller.IndexLabel);

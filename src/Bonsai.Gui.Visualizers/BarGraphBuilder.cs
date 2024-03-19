@@ -48,6 +48,13 @@ namespace Bonsai.Gui.Visualizers
         public BarType BarType { get; set; }
 
         /// <summary>
+        /// Gets the optional settings for each bar added to the graph.
+        /// </summary>
+        [Category(nameof(CategoryAttribute.Appearance))]
+        [Description("Specifies optional settings for each bar added to the graph.")]
+        public Collection<CurveConfiguration> CurveSettings { get; } = new();
+
+        /// <summary>
         /// Gets or sets the optional capacity used for rolling bar graphs. If no capacity is specified,
         /// all data points will be displayed.
         /// </summary>
@@ -81,6 +88,7 @@ namespace Bonsai.Gui.Visualizers
             internal Type IndexType;
             internal string IndexLabel;
             internal string[] ValueLabels;
+            internal CurveConfiguration[] CurveSettings;
             internal Action<object, IBarGraphVisualizer> AddValues;
             internal BarBase BaseAxis;
             internal BarType BarType;
@@ -104,7 +112,8 @@ namespace Bonsai.Gui.Visualizers
                 Min = Min,
                 Max = Max,
                 BaseAxis = BaseAxis,
-                BarType = BarType
+                BarType = BarType,
+                CurveSettings = CurveSettings.ToArray()
             };
 
             var selectedIndex = GraphHelper.SelectIndexMember(elementVariable, IndexSelector, out Controller.IndexLabel);
