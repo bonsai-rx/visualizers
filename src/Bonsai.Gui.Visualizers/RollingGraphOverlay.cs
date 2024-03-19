@@ -30,9 +30,19 @@ namespace Bonsai.Gui.Visualizers
 
         internal void AddValues(double index, string tag, params double[] values)
         {
-            for (int i = 0; i < series.Length; i++)
+            if (visualizer.BarSettings.Base <= BarBase.X2)
             {
-                series[i].Add(index, values[i], index, tag);
+                for (int i = 0; i < series.Length; i++)
+                {
+                    series[i].Add(index, values[i], index, tag);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < series.Length; i++)
+                {
+                    series[i].Add(values[i], index, index, tag);
+                }
             }
         }
 
