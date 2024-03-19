@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using Bonsai.Design;
 using ZedGraph;
@@ -15,14 +14,6 @@ namespace Bonsai.Gui.Visualizers
         Type indexType;
         BarSettings barSettings;
         GraphPanelBuilder graphBuilder;
-
-        static void ThrowIfNotEquals<T>(T left, T right, string message)
-        {
-            if (!EqualityComparer<T>.Default.Equals(left, right))
-            {
-                throw new InvalidOperationException(message);
-            }
-        }
 
         internal Axis BarBaseAxis()
         {
@@ -50,7 +41,7 @@ namespace Bonsai.Gui.Visualizers
                     GraphHelper.FormatLinearDateAxis(baseAxis);
                 }
             }
-            else ThrowIfNotEquals(indexType, type, "Only overlays with identical axis are allowed.");
+            else ThrowHelper.ThrowIfNotEquals(indexType, type, "Only overlays with identical axis are allowed.");
         }
 
         internal void EnsureBarSettings(BarSettings settings)
@@ -68,12 +59,12 @@ namespace Bonsai.Gui.Visualizers
             else
             {
                 const string ErrorMessage = "All bar graph overlays must have identical settings.";
-                ThrowIfNotEquals(barSettings.Base, settings.Base, ErrorMessage);
-                ThrowIfNotEquals(barSettings.ClusterScaleWidth, settings.ClusterScaleWidth, ErrorMessage);
-                ThrowIfNotEquals(barSettings.ClusterScaleWidthAuto, settings.ClusterScaleWidthAuto, ErrorMessage);
-                ThrowIfNotEquals(barSettings.MinBarGap, settings.MinBarGap, ErrorMessage);
-                ThrowIfNotEquals(barSettings.MinClusterGap, settings.MinClusterGap, ErrorMessage);
-                ThrowIfNotEquals(barSettings.Type, settings.Type, ErrorMessage);
+                ThrowHelper.ThrowIfNotEquals(barSettings.Base, settings.Base, ErrorMessage);
+                ThrowHelper.ThrowIfNotEquals(barSettings.ClusterScaleWidth, settings.ClusterScaleWidth, ErrorMessage);
+                ThrowHelper.ThrowIfNotEquals(barSettings.ClusterScaleWidthAuto, settings.ClusterScaleWidthAuto, ErrorMessage);
+                ThrowHelper.ThrowIfNotEquals(barSettings.MinBarGap, settings.MinBarGap, ErrorMessage);
+                ThrowHelper.ThrowIfNotEquals(barSettings.MinClusterGap, settings.MinClusterGap, ErrorMessage);
+                ThrowHelper.ThrowIfNotEquals(barSettings.Type, settings.Type, ErrorMessage);
             }
         }
 

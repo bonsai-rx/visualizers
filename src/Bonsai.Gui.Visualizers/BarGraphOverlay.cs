@@ -20,7 +20,7 @@ namespace Bonsai.Gui.Visualizers
     {
         GraphPanelVisualizer visualizer;
         BarGraphBuilder.VisualizerController controller;
-        IPointListEdit[] series;
+        BoundedPointPairList[] series;
 
         void IBarGraphVisualizer.AddValues(string index, params double[] values) => AddValues(0, index, values);
 
@@ -69,13 +69,13 @@ namespace Bonsai.Gui.Visualizers
                 void AddBaseX()
                 {
                     for (int i = 0; i < series.Length; i++)
-                        series[i].Add(new PointPair(index, values[i], tag));
+                        series[i].Add(index, values[i], index, tag);
                 }
 
                 void AddBaseY()
                 {
                     for (int i = 0; i < series.Length; i++)
-                        series[i].Add(new PointPair(values[i], index, tag));
+                        series[i].Add(values[i], index, index, tag);
                 }
             }
         }
@@ -97,10 +97,10 @@ namespace Bonsai.Gui.Visualizers
             var hasLabels = controller.ValueLabels != null;
             if (hasLabels)
             {
-                series = new IPointListEdit[controller.ValueLabels.Length];
+                series = new BoundedPointPairList[controller.ValueLabels.Length];
                 for (int i = 0; i < series.Length; i++)
                 {
-                    series[i] = new PointPairList();
+                    series[i] = new BoundedPointPairList();
                     var curveSettings = controller.CurveSettings.Length > 0
                         ? controller.CurveSettings[i % controller.CurveSettings.Length]
                         : null;

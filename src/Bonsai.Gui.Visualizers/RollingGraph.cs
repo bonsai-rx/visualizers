@@ -10,8 +10,7 @@ namespace Bonsai.Gui.Visualizers
         int numSeries;
         bool autoScaleX;
         bool autoScaleY;
-        IPointListEdit[] series;
-        RollingPointPairList[] rollingSeries;
+        BoundedPointPairList[] series;
         const int DefaultCapacity = 640;
         const int DefaultNumSeries = 1;
 
@@ -25,7 +24,7 @@ namespace Bonsai.Gui.Visualizers
             ZoomEvent += RollingGraph_ZoomEvent;
         }
 
-        protected IPointListEdit[] Series
+        protected BoundedPointPairList[] Series
         {
             get { return series; }
         }
@@ -154,51 +153,14 @@ namespace Bonsai.Gui.Visualizers
             numSeries = count;
             if (series == null || series.Length != numSeries || reset)
             {
-                if (capacity == 0)
-                {
-                    rollingSeries = null;
-                    series = new IPointListEdit[numSeries];
-                }
-                else
-                {
-                    rollingSeries = new RollingPointPairList[numSeries];
-                    series = rollingSeries;
-                }
+                series = new BoundedPointPairList[numSeries];
             }
 
             var previousSeries = series;
-            if (capacity == 0 && rollingSeries != null)
-            {
-                rollingSeries = null;
-                series = new IPointListEdit[numSeries];
-            }
-
             for (int i = 0; i < series.Length; i++)
             {
                 var previousPoints = previousSeries[i];
-                if (capacity > 0)
-                {
-                    var points = new RollingPointPairList(capacity);
-                    if (previousPoints != null)
-                    {
-                        points.Add(previousPoints);
-                    }
-
-                    series[i] = points;
-                }
-                else
-                {
-                    var points = new PointPairList();
-                    if (previousPoints != null)
-                    {
-                        for (int p = 0; p < previousPoints.Count; p++)
-                        {
-                            points.Add(previousPoints[p]);
-                        }
-                    }
-
-                    series[i] = points;
-                }
+                series[i] = new BoundedPointPairList(previousPoints, capacity);
             }
 
             EnsureSeries(labels);
@@ -206,21 +168,11 @@ namespace Bonsai.Gui.Visualizers
 
         public void AddValues(double index, params double[] values) => AddValues(index, null, values);
 
-        public void AddValues(double index, object tag, params double[] values)
+        public void AddValues(double index, string label, params double[] values)
         {
-            if (rollingSeries != null)
+            for (int i = 0; i < series.Length; i++)
             {
-                for (int i = 0; i < rollingSeries.Length; i++)
-                {
-                    rollingSeries[i].Add(index, values[i], tag);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < series.Length; i++)
-                {
-                    series[i].Add(new PointPair(index, values[i], double.MaxValue, tag));
-                }
+                series[i].Add(index, values[i], index, label);
             }
         }
 

@@ -43,11 +43,11 @@ namespace Bonsai.Gui.Visualizers
             return -1;
         }
 
-        public void AddValues(double index, string tag, double[] values)
+        public new void AddValues(double index, string label, double[] values)
         {
             if (values.Length > 0)
             {
-                var updateIndex = FindIndex(Series[0], tag);
+                var updateIndex = FindIndex(Series[0], label);
                 if (updateIndex >= 0 && BaseAxis <= BarBase.X2) UpdateLastBaseX();
                 else if (updateIndex >= 0) UpdateLastBaseY();
                 else if (BaseAxis <= BarBase.X2) AddBaseX();
@@ -68,13 +68,13 @@ namespace Bonsai.Gui.Visualizers
                 void AddBaseX()
                 {
                     for (int i = 0; i < Series.Length; i++)
-                        Series[i].Add(new PointPair(index, values[i], tag));
+                        Series[i].Add(index, values[i], label);
                 }
 
                 void AddBaseY()
                 {
                     for (int i = 0; i < Series.Length; i++)
-                        Series[i].Add(new PointPair(values[i], index, tag));
+                        Series[i].Add(values[i], index, label);
                 }
             }
         }
