@@ -24,33 +24,33 @@ namespace Bonsai.Gui.Visualizers
         public int Capacity { get; set; }
 
         /// <summary>
-        /// Gets or sets the lower limit of the x-axis range when using a fixed scale.
+        /// Gets or sets the lower limit of the X-axis range when using a fixed scale.
         /// </summary>
         public double XMin { get; set; }
 
         /// <summary>
-        /// Gets or sets the upper limit of the x-axis range when using a fixed scale.
+        /// Gets or sets the upper limit of the X-axis range when using a fixed scale.
         /// </summary>
         public double XMax { get; set; } = 1;
 
         /// <summary>
-        /// Gets or sets the lower limit of the y-axis range when using a fixed scale.
+        /// Gets or sets the lower limit of the Y-axis range when using a fixed scale.
         /// </summary>
         public double YMin { get; set; }
 
         /// <summary>
-        /// Gets or sets the upper limit of the y-axis range when using a fixed scale.
+        /// Gets or sets the upper limit of the Y-axis range when using a fixed scale.
         /// </summary>
         public double YMax { get; set; } = 1;
 
         /// <summary>
-        /// Gets or sets a value indicating whether the x-axis range should be recalculated
+        /// Gets or sets a value indicating whether the X-axis range should be recalculated
         /// automatically as the graph updates.
         /// </summary>
         public bool AutoScaleX { get; set; } = true;
 
         /// <summary>
-        /// Gets or sets a value indicating whether the y-axis range should be recalculated
+        /// Gets or sets a value indicating whether the Y-axis range should be recalculated
         /// automatically as the graph updates.
         /// </summary>
         public bool AutoScaleY { get; set; } = true;

@@ -63,19 +63,19 @@ namespace Bonsai.Gui.Visualizers
         public int? Capacity { get; set; }
 
         /// <summary>
-        /// Gets or sets a value specifying a fixed lower limit for the y-axis range.
+        /// Gets or sets a value specifying a fixed lower limit for the bar range axis.
         /// If no fixed range is specified, the graph limits can be edited online.
         /// </summary>
         [Category("Range")]
-        [Description("Specifies the optional fixed lower limit of the y-axis range.")]
+        [Description("Specifies the optional fixed lower limit for the bar range axis.")]
         public double? Min { get; set; }
 
         /// <summary>
-        /// Gets or sets a value specifying a fixed upper limit for the y-axis range.
+        /// Gets or sets a value specifying a fixed upper limit for the bar range axis.
         /// If no fixed range is specified, the graph limits can be edited online.
         /// </summary>
         [Category("Range")]
-        [Description("Specifies the optional fixed upper limit of the y-axis range.")]
+        [Description("Specifies the optional fixed upper limit for the bar range axis.")]
         public double? Max { get; set; }
 
         internal VisualizerController Controller { get; set; }

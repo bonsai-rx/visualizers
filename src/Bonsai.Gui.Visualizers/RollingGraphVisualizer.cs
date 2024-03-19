@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Reactive;
 using System.Windows.Forms;
-using ZedGraph;
 
 namespace Bonsai.Gui.Visualizers
 {
@@ -24,17 +23,17 @@ namespace Bonsai.Gui.Visualizers
         public int Capacity { get; set; }
 
         /// <summary>
-        /// Gets or sets the lower limit of the y-axis range when using a fixed scale.
+        /// Gets or sets the lower limit for the value axis when using a fixed scale.
         /// </summary>
         public double Min { get; set; }
 
         /// <summary>
-        /// Gets or sets the upper limit of the y-axis range when using a fixed scale.
+        /// Gets or sets the upper limit for the value axis when using a fixed scale.
         /// </summary>
         public double Max { get; set; } = 1;
 
         /// <summary>
-        /// Gets or sets a value indicating whether the y-axis range should be recalculated
+        /// Gets or sets a value indicating whether the value axis scale should be recalculated
         /// automatically as the graph updates.
         /// </summary>
         public bool AutoScale { get; set; } = true;

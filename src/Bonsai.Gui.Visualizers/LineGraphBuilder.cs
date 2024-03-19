@@ -47,35 +47,35 @@ namespace Bonsai.Gui.Visualizers
         public int? Capacity { get; set; }
 
         /// <summary>
-        /// Gets or sets a value specifying a fixed lower limit for the x-axis range.
+        /// Gets or sets a value specifying a fixed lower limit for the X-axis range.
         /// If no fixed range is specified, the graph limits can be edited online.
         /// </summary>
         [Category("Range")]
-        [Description("Specifies the optional fixed lower limit of the x-axis range.")]
+        [Description("Specifies the optional fixed lower limit of the X-axis range.")]
         public double? XMin { get; set; }
 
         /// <summary>
-        /// Gets or sets a value specifying a fixed upper limit for the x-axis range.
+        /// Gets or sets a value specifying a fixed upper limit for the X-axis range.
         /// If no fixed range is specified, the graph limits can be edited online.
         /// </summary>
         [Category("Range")]
-        [Description("Specifies the optional fixed upper limit of the x-axis range.")]
+        [Description("Specifies the optional fixed upper limit of the X-axis range.")]
         public double? XMax { get; set; }
 
         /// <summary>
-        /// Gets or sets a value specifying a fixed lower limit for the y-axis range.
+        /// Gets or sets a value specifying a fixed lower limit for the Y-axis range.
         /// If no fixed range is specified, the graph limits can be edited online.
         /// </summary>
         [Category("Range")]
-        [Description("Specifies the optional fixed lower limit of the y-axis range.")]
+        [Description("Specifies the optional fixed lower limit of the Y-axis range.")]
         public double? YMin { get; set; }
 
         /// <summary>
-        /// Gets or sets a value specifying a fixed upper limit for the y-axis range.
+        /// Gets or sets a value specifying a fixed upper limit for the Y-axis range.
         /// If no fixed range is specified, the graph limits can be edited online.
         /// </summary>
         [Category("Range")]
-        [Description("Specifies the optional fixed upper limit of the y-axis range.")]
+        [Description("Specifies the optional fixed upper limit of the Y-axis range.")]
         public double? YMax { get; set; }
 
         internal VisualizerController Controller { get; set; }
