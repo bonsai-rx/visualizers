@@ -71,7 +71,7 @@ namespace Bonsai.Gui.Visualizers
         /// <inheritdoc/>
         protected override GraphControl CreateControl(IServiceProvider provider, GraphPanelBuilder builder)
         {
-            var graph = new GraphControl();
+            var graph = new GraphPanelView();
             graph.Dock = DockStyle.Fill;
             graphBuilder = builder;
             return graph;
