@@ -91,6 +91,8 @@ namespace Bonsai.Gui.Visualizers
             var context = (ITypeVisualizerContext)provider.GetService(typeof(ITypeVisualizerContext));
             var graphPanelBuilder = (GraphPanelBuilder)ExpressionBuilder.GetVisualizerElement(context.Source).Builder;
             var controller = graphPanelBuilder.Controller;
+            view.GraphPane.XAxis.Scale.IsReverse = controller.ReverseX;
+            view.GraphPane.YAxis.Scale.IsReverse = controller.ReverseY;
             barSettings = view.GraphPane.BarSettings;
             barSettings.Base = controller.BaseAxis;
             barSettings.Type = controller.BarType;

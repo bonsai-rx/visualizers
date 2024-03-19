@@ -39,6 +39,20 @@ namespace Bonsai.Gui.Visualizers
         public BarType BarType { get; set; }
 
         /// <summary>
+        /// Gets or sets a value specifying whether the scale values are reversed on the X-axis.
+        /// </summary>
+        [Category(nameof(CategoryAttribute.Appearance))]
+        [Description("Specifies whether the scale values are reversed on the X-axis.")]
+        public bool ReverseX { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value specifying whether the scale values are reversed on the Y-axis.
+        /// </summary>
+        [Category(nameof(CategoryAttribute.Appearance))]
+        [Description("Specifies whether the scale values are reversed on the Y-axis.")]
+        public bool ReverseY { get; set; }
+
+        /// <summary>
         /// Gets or sets the optional maximum span of data displayed at any one moment in the graph.
         /// If no span is specified, all data points will be displayed.
         /// </summary>
@@ -80,6 +94,8 @@ namespace Bonsai.Gui.Visualizers
             internal int? Capacity;
             internal double? Min;
             internal double? Max;
+            internal bool ReverseX;
+            internal bool ReverseY;
         }
 
         /// <summary>
@@ -96,7 +112,9 @@ namespace Bonsai.Gui.Visualizers
                 Span = Span,
                 Capacity = Capacity,
                 Min = Min,
-                Max = Max
+                Max = Max,
+                ReverseX = ReverseX,
+                ReverseY = ReverseY
             };
             return Expression.Call(typeof(Observable), nameof(Observable.Never), new[] { typeof(Unit) });
         }
