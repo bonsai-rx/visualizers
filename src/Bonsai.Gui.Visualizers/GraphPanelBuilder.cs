@@ -3,8 +3,6 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Reactive.Linq;
 using System.Reactive;
-using Bonsai.Expressions;
-using ZedGraph;
 
 namespace Bonsai.Gui.Visualizers
 {
@@ -14,86 +12,50 @@ namespace Bonsai.Gui.Visualizers
     /// </summary>
     [TypeVisualizer(typeof(GraphPanelVisualizer))]
     [Description("Specifies a mashup graph panel that can be used to combine multiple plots sharing the same axes.")]
-    public class GraphPanelBuilder : ZeroArgumentExpressionBuilder, INamedElement
+    public class GraphPanelBuilder : GraphPanelBuilderBase
     {
         /// <summary>
-        /// Gets or sets the name of the visualizer window.
-        /// </summary>
-        [Category(nameof(CategoryAttribute.Design))]
-        [Description("The name of the visualizer window.")]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value specifying the axis on which the bars in the graph will be displayed.
-        /// </summary>
-        [TypeConverter(typeof(BaseAxisConverter))]
-        [Category(nameof(CategoryAttribute.Appearance))]
-        [Description("Specifies the axis on which the bars in the graph will be displayed.")]
-        public BarBase BaseAxis { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value specifying how the different bars in the graph will be visually arranged.
-        /// </summary>
-        [Category(nameof(CategoryAttribute.Appearance))]
-        [Description("Specifies how the different bars in the graph will be visually arranged.")]
-        public BarType BarType { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value specifying whether the scale values are reversed on the X-axis.
-        /// </summary>
-        [Category(nameof(CategoryAttribute.Appearance))]
-        [Description("Specifies whether the scale values are reversed on the X-axis.")]
-        public bool ReverseX { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value specifying whether the scale values are reversed on the Y-axis.
-        /// </summary>
-        [Category(nameof(CategoryAttribute.Appearance))]
-        [Description("Specifies whether the scale values are reversed on the Y-axis.")]
-        public bool ReverseY { get; set; }
-
-        /// <summary>
-        /// Gets or sets the optional maximum span of data displayed at any one moment in the graph.
-        /// If no span is specified, all data points will be displayed.
-        /// </summary>
-        [Category("Range")]
-        [Description("The optional maximum span of data displayed at any one moment in the graph. " +
-                     "If no span is specified, all data points will be displayed.")]
-        public double? Span { get; set; }
-
-        /// <summary>
-        /// Gets or sets the optional capacity used for rolling line graphs. If no capacity is specified, all data points will be displayed.
-        /// </summary>
-        [Category("Range")]
-        [Description("The optional capacity used for rolling line graphs. If no capacity is specified, all data points will be displayed.")]
-        public int? Capacity { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value specifying a fixed lower limit for the axis range.
+        /// Gets or sets a value specifying a fixed lower limit for the X-axis range.
         /// If no fixed range is specified, the graph limits can be edited online.
         /// </summary>
         [Category("Range")]
-        [Description("Specifies the optional fixed lower limit of the axis range.")]
-        public double? Min { get; set; }
+        [Description("Specifies the optional fixed lower limit of the X-axis range.")]
+        public double? XMin { get; set; }
 
         /// <summary>
-        /// Gets or sets a value specifying a fixed upper limit for the axis range.
+        /// Gets or sets a value specifying a fixed upper limit for the X-axis range.
         /// If no fixed range is specified, the graph limits can be edited online.
         /// </summary>
         [Category("Range")]
-        [Description("Specifies the optional fixed upper limit of the axis range.")]
-        public double? Max { get; set; }
+        [Description("Specifies the optional fixed upper limit of the X-axis range.")]
+        public double? XMax { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value specifying a fixed lower limit for the Y-axis range.
+        /// If no fixed range is specified, the graph limits can be edited online.
+        /// </summary>
+        [Category("Range")]
+        [Description("Specifies the optional fixed lower limit of the Y-axis range.")]
+        public double? YMin { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value specifying a fixed upper limit for the Y-axis range.
+        /// If no fixed range is specified, the graph limits can be edited online.
+        /// </summary>
+        [Category("Range")]
+        [Description("Specifies the optional fixed upper limit of the Y-axis range.")]
+        public double? YMax { get; set; }
 
         internal VisualizerController Controller { get; set; }
 
         internal class VisualizerController
         {
-            internal BarBase BaseAxis;
-            internal BarType BarType;
             internal double? Span;
             internal int? Capacity;
-            internal double? Min;
-            internal double? Max;
+            internal double? XMin;
+            internal double? XMax;
+            internal double? YMin;
+            internal double? YMax;
             internal bool ReverseX;
             internal bool ReverseY;
         }
@@ -107,12 +69,12 @@ namespace Bonsai.Gui.Visualizers
         {
             Controller = new VisualizerController
             {
-                BaseAxis = BaseAxis,
-                BarType = BarType,
                 Span = Span,
                 Capacity = Capacity,
-                Min = Min,
-                Max = Max,
+                XMin = XMin,
+                XMax = XMax,
+                YMin = YMin,
+                YMax = YMax,
                 ReverseX = ReverseX,
                 ReverseY = ReverseY
             };

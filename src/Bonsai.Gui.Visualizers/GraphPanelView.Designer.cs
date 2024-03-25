@@ -35,10 +35,14 @@
             this.spanValueLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.capacityStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.capacityValueLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.scaleStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.minStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.maxStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.autoScaleButton = new System.Windows.Forms.ToolStripButton();
+            this.scaleStatusLabelX = new System.Windows.Forms.ToolStripStatusLabel();
+            this.minStatusLabelX = new System.Windows.Forms.ToolStripStatusLabel();
+            this.maxStatusLabelX = new System.Windows.Forms.ToolStripStatusLabel();
+            this.scaleStatusLabelY = new System.Windows.Forms.ToolStripStatusLabel();
+            this.minStatusLabelY = new System.Windows.Forms.ToolStripStatusLabel();
+            this.maxStatusLabelY = new System.Windows.Forms.ToolStripStatusLabel();
+            this.autoScaleButtonX = new System.Windows.Forms.ToolStripButton();
+            this.autoScaleButtonY = new System.Windows.Forms.ToolStripButton();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,10 +54,14 @@
             this.spanValueLabel,
             this.capacityStatusLabel,
             this.capacityValueLabel,
-            this.scaleStatusLabel,
-            this.minStatusLabel,
-            this.maxStatusLabel,
-            this.autoScaleButton});
+            this.scaleStatusLabelX,
+            this.minStatusLabelX,
+            this.maxStatusLabelX,
+            this.autoScaleButtonX,
+            this.scaleStatusLabelY,
+            this.minStatusLabelY,
+            this.maxStatusLabelY,
+            this.autoScaleButtonY});
             this.statusStrip.Location = new System.Drawing.Point(0, 218);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(400, 22);
@@ -91,44 +99,76 @@
             this.capacityValueLabel.Size = new System.Drawing.Size(12, 17);
             this.capacityValueLabel.Text = "count";
             // 
-            // scaleStatusLabel
+            // scaleStatusLabelX
             // 
-            this.scaleStatusLabel.Name = "scaleStatusLabel";
-            this.scaleStatusLabel.Size = new System.Drawing.Size(47, 17);
-            this.scaleStatusLabel.Text = "Scale:";
+            this.scaleStatusLabelX.Name = "statusLabelX";
+            this.scaleStatusLabelX.Size = new System.Drawing.Size(47, 17);
+            this.scaleStatusLabelX.Text = "X:";
             // 
-            // minStatusLabel
+            // minStatusLabelX
             // 
-            this.minStatusLabel.Name = "minStatusLabel";
-            this.minStatusLabel.Size = new System.Drawing.Size(13, 17);
-            this.minStatusLabel.Text = "min";
-            this.minStatusLabel.Visible = false;
+            this.minStatusLabelX.Name = "minStatusLabelX";
+            this.minStatusLabelX.Size = new System.Drawing.Size(13, 17);
+            this.minStatusLabelX.Text = "min";
+            this.minStatusLabelX.Visible = false;
             // 
-            // maxStatusLabel
+            // maxStatusLabelX
             // 
-            this.maxStatusLabel.Name = "maxStatusLabel";
-            this.maxStatusLabel.Size = new System.Drawing.Size(14, 17);
-            this.maxStatusLabel.Text = "Max";
-            this.maxStatusLabel.Visible = false;
+            this.maxStatusLabelX.Name = "maxStatusLabelX";
+            this.maxStatusLabelX.Size = new System.Drawing.Size(14, 17);
+            this.maxStatusLabelX.Text = "Max";
+            this.maxStatusLabelX.Visible = false;
             // 
-            // autoScaleButton
+            // autoScaleButtonX
             // 
-            this.autoScaleButton.Checked = true;
-            this.autoScaleButton.CheckOnClick = true;
-            this.autoScaleButton.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.autoScaleButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.autoScaleButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.autoScaleButton.Name = "autoScaleButton";
-            this.autoScaleButton.Size = new System.Drawing.Size(35, 20);
-            this.autoScaleButton.Text = "auto";
-            this.autoScaleButton.CheckedChanged += new System.EventHandler(this.autoScaleButton_CheckedChanged);
+            this.autoScaleButtonX.Checked = true;
+            this.autoScaleButtonX.CheckOnClick = true;
+            this.autoScaleButtonX.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.autoScaleButtonX.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.autoScaleButtonX.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.autoScaleButtonX.Name = "autoScaleButtonX";
+            this.autoScaleButtonX.Size = new System.Drawing.Size(35, 20);
+            this.autoScaleButtonX.Text = "auto";
+            this.autoScaleButtonX.CheckedChanged += new System.EventHandler(this.autoScaleButtonX_CheckedChanged);
             // 
-            // GraphPanelView
+            // scaleStatusLabelY
+            // 
+            this.scaleStatusLabelY.Name = "statusLabelY";
+            this.scaleStatusLabelY.Size = new System.Drawing.Size(47, 17);
+            this.scaleStatusLabelY.Text = "Y:";
+            // 
+            // minStatusLabelY
+            // 
+            this.minStatusLabelY.Name = "minStatusLabelY";
+            this.minStatusLabelY.Size = new System.Drawing.Size(13, 17);
+            this.minStatusLabelY.Text = "min";
+            this.minStatusLabelY.Visible = false;
+            // 
+            // maxStatusLabelY
+            // 
+            this.maxStatusLabelY.Name = "maxStatusLabelY";
+            this.maxStatusLabelY.Size = new System.Drawing.Size(14, 17);
+            this.maxStatusLabelY.Text = "Max";
+            this.maxStatusLabelY.Visible = false;
+            // 
+            // autoScaleButtonY
+            // 
+            this.autoScaleButtonY.Checked = true;
+            this.autoScaleButtonY.CheckOnClick = true;
+            this.autoScaleButtonY.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.autoScaleButtonY.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.autoScaleButtonY.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.autoScaleButtonY.Name = "autoScaleButtonY";
+            this.autoScaleButtonY.Size = new System.Drawing.Size(35, 20);
+            this.autoScaleButtonY.Text = "auto";
+            this.autoScaleButtonY.CheckedChanged += new System.EventHandler(this.autoScaleButtonY_CheckedChanged);
+            // 
+            // GraphPanelView2D
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.statusStrip);
-            this.Name = "GraphPanelView";
+            this.Name = "GraphPanelView2D";
             this.Size = new System.Drawing.Size(400, 240);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
@@ -140,11 +180,15 @@
         #endregion
 
         private System.Windows.Forms.StatusStrip statusStrip;
-        private System.Windows.Forms.ToolStripButton autoScaleButton;
+        private System.Windows.Forms.ToolStripButton autoScaleButtonX;
+        private System.Windows.Forms.ToolStripButton autoScaleButtonY;
         private System.Windows.Forms.ToolStripStatusLabel cursorStatusLabel;
-        private System.Windows.Forms.ToolStripStatusLabel scaleStatusLabel;
-        private System.Windows.Forms.ToolStripStatusLabel minStatusLabel;
-        private System.Windows.Forms.ToolStripStatusLabel maxStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel scaleStatusLabelX;
+        private System.Windows.Forms.ToolStripStatusLabel minStatusLabelX;
+        private System.Windows.Forms.ToolStripStatusLabel maxStatusLabelX;
+        private System.Windows.Forms.ToolStripStatusLabel scaleStatusLabelY;
+        private System.Windows.Forms.ToolStripStatusLabel minStatusLabelY;
+        private System.Windows.Forms.ToolStripStatusLabel maxStatusLabelY;
         private System.Windows.Forms.ToolStripStatusLabel capacityStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel capacityValueLabel;
         private System.Windows.Forms.ToolStripStatusLabel spanStatusLabel;

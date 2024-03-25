@@ -8,51 +8,35 @@ using Bonsai.Gui.Visualizers;
 using Bonsai.Expressions;
 using ZedGraph;
 
-[assembly: TypeVisualizer(typeof(RollingGraphOverlay), Target = typeof(MashupSource<RollingGraphPanelVisualizer, RollingGraphVisualizer>))]
+[assembly: TypeVisualizer(typeof(LineGraphOverlay), Target = typeof(MashupSource<GraphPanelVisualizer, LineGraphVisualizer>))]
 
 
 namespace Bonsai.Gui.Visualizers
 {
     /// <summary>
-    /// Provides a type visualizer used to overlay a sequence of values as a rolling graph.
+    /// Provides a type visualizer used to overlay a sequence of points as a line graph.
     /// </summary>
-    public class RollingGraphOverlay : BufferedVisualizer, IRollingGraphVisualizer
+    public class LineGraphOverlay : BufferedVisualizer, ILineGraphVisualizer
     {
-        RollingGraphPanelVisualizer visualizer;
-        RollingGraphBuilder.VisualizerController controller;
+        GraphPanelVisualizer visualizer;
+        LineGraphBuilder.VisualizerController controller;
         BoundedPointPairList[] series;
 
-        void IRollingGraphVisualizer.AddValues(string index, params double[] values) => AddValues(0, index, values);
-
-        void IRollingGraphVisualizer.AddValues(double index, params double[] values) => AddValues(index, null, values);
-
-        void IRollingGraphVisualizer.AddValues(double index, string tag, params double[] values) => AddValues(index, null, values);
-
-        internal void AddValues(double index, string tag, params double[] values)
+        void ILineGraphVisualizer.AddValues(double index, params PointPair[] values)
         {
-            if (visualizer.BarSettings.Base <= BarBase.X2)
+            for (int i = 0; i < series.Length; i++)
             {
-                for (int i = 0; i < series.Length; i++)
-                {
-                    series[i].Add(index, values[i], index, tag);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < series.Length; i++)
-                {
-                    series[i].Add(values[i], index, index, tag);
-                }
+                series[i].Add(values[i].X, values[i].Y, index, values[i].Tag);
             }
         }
 
         /// <inheritdoc/>
         public override void Load(IServiceProvider provider)
         {
-            visualizer = (RollingGraphPanelVisualizer)provider.GetService(typeof(MashupVisualizer));
+            visualizer = (GraphPanelVisualizer)provider.GetService(typeof(MashupVisualizer));
             var context = (ITypeVisualizerContext)provider.GetService(typeof(ITypeVisualizerContext));
-            var rollingGraphBuilder = (RollingGraphBuilder)ExpressionBuilder.GetVisualizerElement(context.Source).Builder;
-            controller = rollingGraphBuilder.Controller;
+            var lineGraphBuilder = (LineGraphBuilder)ExpressionBuilder.GetVisualizerElement(context.Source).Builder;
+            controller = lineGraphBuilder.Controller;
             visualizer.EnsureIndex(controller.IndexType);
 
             var hasLabels = controller.ValueLabels != null;

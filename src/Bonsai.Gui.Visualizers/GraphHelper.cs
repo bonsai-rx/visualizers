@@ -150,7 +150,7 @@ namespace Bonsai.Gui.Visualizers
             if (memberNames.Length == 1)
             {
                 var memberName = memberNames[0];
-                valueLabels = memberName != ExpressionHelper.ImplicitParameterName ? new[] { memberName } : null;
+                valueLabels = new[] { memberName };
                 var member = ExpressionHelper.MemberAccess(expression, memberNames[0]);
                 if (member.Type.IsArray)
                 {
