@@ -4,56 +4,87 @@ namespace Bonsai.Gui.Visualizers
 {
     internal class GraphPanel : BoundedGraphPanel
     {
-        bool autoScale;
+        bool autoScaleX;
+        bool autoScaleY;
 
         public GraphPanel()
         {
-            autoScale = true;
+            autoScaleX = true;
+            autoScaleY = true;
         }
 
-        public Axis ScaleAxis => GraphPane.BarSettings.Base switch
+        public double XMin
         {
-            BarBase.Y => GraphPane.XAxis,
-            BarBase.Y2 => GraphPane.X2Axis,
-            BarBase.X2 => GraphPane.Y2Axis,
-            _ => GraphPane.YAxis
-        };
-
-        public double Min
-        {
-            get { return ScaleAxis.Scale.Min; }
+            get { return GraphPane.XAxis.Scale.Min; }
             set
             {
-                ScaleAxis.Scale.Min = value;
+                GraphPane.XAxis.Scale.Min = value;
                 GraphPane.AxisChange();
                 Invalidate();
             }
         }
 
-        public double Max
+        public double XMax
         {
-            get { return ScaleAxis.Scale.Max; }
+            get { return GraphPane.XAxis.Scale.Max; }
             set
             {
-                ScaleAxis.Scale.Max = value;
+                GraphPane.XAxis.Scale.Max = value;
                 GraphPane.AxisChange();
                 Invalidate();
             }
         }
 
-        public bool AutoScale
+        public double YMin
         {
-            get { return autoScale; }
+            get { return GraphPane.YAxis.Scale.Min; }
             set
             {
-                var changed = autoScale != value;
-                autoScale = value;
+                GraphPane.YAxis.Scale.Min = value;
+                GraphPane.AxisChange();
+                Invalidate();
+            }
+        }
+
+        public double YMax
+        {
+            get { return GraphPane.YAxis.Scale.Max; }
+            set
+            {
+                GraphPane.YAxis.Scale.Max = value;
+                GraphPane.AxisChange();
+                Invalidate();
+            }
+        }
+
+        public bool AutoScaleX
+        {
+            get { return autoScaleX; }
+            set
+            {
+                var changed = autoScaleX != value;
+                autoScaleX = value;
                 if (changed)
                 {
-                    var baseAxis = ScaleAxis;
-                    baseAxis.Scale.MaxAuto = autoScale;
-                    baseAxis.Scale.MinAuto = autoScale;
-                    if (autoScale) Invalidate();
+                    GraphPane.XAxis.Scale.MaxAuto = autoScaleX;
+                    GraphPane.XAxis.Scale.MinAuto = autoScaleX;
+                    if (autoScaleX) Invalidate();
+                }
+            }
+        }
+
+        public bool AutoScaleY
+        {
+            get { return autoScaleY; }
+            set
+            {
+                var changed = autoScaleY != value;
+                autoScaleY = value;
+                if (changed)
+                {
+                    GraphPane.YAxis.Scale.MaxAuto = autoScaleY;
+                    GraphPane.YAxis.Scale.MinAuto = autoScaleY;
+                    if (autoScaleY) Invalidate();
                 }
             }
         }

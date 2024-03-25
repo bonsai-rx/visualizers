@@ -8,7 +8,7 @@ using Bonsai.Gui.Visualizers;
 using Bonsai.Expressions;
 using ZedGraph;
 
-[assembly: TypeVisualizer(typeof(BarGraphOverlay), Target = typeof(MashupSource<GraphPanelVisualizer, BarGraphVisualizer>))]
+[assembly: TypeVisualizer(typeof(BarGraphOverlay), Target = typeof(MashupSource<RollingGraphPanelVisualizer, BarGraphVisualizer>))]
 
 
 namespace Bonsai.Gui.Visualizers
@@ -18,7 +18,7 @@ namespace Bonsai.Gui.Visualizers
     /// </summary>
     public class BarGraphOverlay : BufferedVisualizer, IBarGraphVisualizer
     {
-        GraphPanelVisualizer visualizer;
+        RollingGraphPanelVisualizer visualizer;
         BarGraphBuilder.VisualizerController controller;
         BoundedPointPairList[] series;
 
@@ -83,7 +83,7 @@ namespace Bonsai.Gui.Visualizers
         /// <inheritdoc/>
         public override void Load(IServiceProvider provider)
         {
-            visualizer = (GraphPanelVisualizer)provider.GetService(typeof(MashupVisualizer));
+            visualizer = (RollingGraphPanelVisualizer)provider.GetService(typeof(MashupVisualizer));
             var context = (ITypeVisualizerContext)provider.GetService(typeof(ITypeVisualizerContext));
             var barGraphBuilder = (BarGraphBuilder)ExpressionBuilder.GetVisualizerElement(context.Source).Builder;
             controller = barGraphBuilder.Controller;

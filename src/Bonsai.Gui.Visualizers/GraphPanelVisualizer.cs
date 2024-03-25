@@ -13,8 +13,6 @@ namespace Bonsai.Gui.Visualizers
     public class GraphPanelVisualizer : MashupControlVisualizerBase<GraphControl, GraphPanelBuilder>
     {
         Type indexType;
-        BarSettings barSettings;
-        GraphPanelBuilder graphBuilder;
 
         /// <summary>
         /// Gets or sets the maximum span of data displayed at any one moment in the graph.
@@ -27,61 +25,48 @@ namespace Bonsai.Gui.Visualizers
         public int Capacity { get; set; }
 
         /// <summary>
-        /// Gets or sets the lower limit of the axis range when using a fixed scale.
+        /// Gets or sets the lower limit of the X-axis range when using a fixed scale.
         /// </summary>
-        public double Min { get; set; }
+        public double XMin { get; set; }
 
         /// <summary>
-        /// Gets or sets the upper limit of the axis range when using a fixed scale.
+        /// Gets or sets the upper limit of the X-axis range when using a fixed scale.
         /// </summary>
-        public double Max { get; set; } = 1;
+        public double XMax { get; set; } = 1;
+
+        /// <summary>
+        /// Gets or sets the lower limit of the Y-axis range when using a fixed scale.
+        /// </summary>
+        public double YMin { get; set; }
+
+        /// <summary>
+        /// Gets or sets the upper limit of the Y-axis range when using a fixed scale.
+        /// </summary>
+        public double YMax { get; set; } = 1;
 
         /// <summary>
         /// Gets or sets a value indicating whether the axis range should be recalculated
         /// automatically as the graph updates.
         /// </summary>
-        public bool AutoScale { get; set; } = true;
+        public bool AutoScaleX { get; set; } = true;
 
-        internal BarSettings BarSettings => barSettings;
-
-        private Axis BarBaseAxis()
-        {
-            return graphBuilder.BaseAxis switch
-            {
-                BarBase.Y => Control.GraphPane.YAxis,
-                BarBase.Y2 => Control.GraphPane.Y2Axis,
-                BarBase.X2 => Control.GraphPane.X2Axis,
-                _ => Control.GraphPane.XAxis
-            };
-        }
+        /// <summary>
+        /// Gets or sets a value indicating whether the axis range should be recalculated
+        /// automatically as the graph updates.
+        /// </summary>
+        public bool AutoScaleY { get; set; } = true;
 
         internal void EnsureIndex(Type type)
         {
             if (indexType == null)
             {
                 indexType = type;
-                var baseAxis = BarBaseAxis();
-                if (type == typeof(string))
+                if (type == typeof(XDate) && Control is GraphPanelView view)
                 {
-                    GraphHelper.FormatOrdinalAxis(baseAxis, indexType);
-                }
-                if (type == typeof(XDate))
-                {
-                    GraphHelper.FormatLinearDateAxis(baseAxis);
+                    view.IsTimeSpan = true;
                 }
             }
-            else ThrowHelper.ThrowIfNotEquals(indexType, type, "Only overlays with identical axis are allowed.");
-        }
-
-        internal void EnsureBarSettings(BarSettings settings)
-        {
-            const string ErrorMessage = "All bar graph overlays must have bar settings compatible with the graph panel.";
-            ThrowHelper.ThrowIfNotEquals(barSettings.Base, settings.Base, ErrorMessage);
-            ThrowHelper.ThrowIfNotEquals(barSettings.ClusterScaleWidth, settings.ClusterScaleWidth, ErrorMessage);
-            ThrowHelper.ThrowIfNotEquals(barSettings.ClusterScaleWidthAuto, settings.ClusterScaleWidthAuto, ErrorMessage);
-            ThrowHelper.ThrowIfNotEquals(barSettings.MinBarGap, settings.MinBarGap, ErrorMessage);
-            ThrowHelper.ThrowIfNotEquals(barSettings.MinClusterGap, settings.MinClusterGap, ErrorMessage);
-            ThrowHelper.ThrowIfNotEquals(barSettings.Type, settings.Type, ErrorMessage);
+            else ThrowHelper.ThrowIfNotEquals(indexType, type, "Only overlays with identical indices are allowed.");
         }
 
         /// <inheritdoc/>
@@ -93,24 +78,38 @@ namespace Bonsai.Gui.Visualizers
             var controller = graphPanelBuilder.Controller;
             view.GraphPane.XAxis.Scale.IsReverse = controller.ReverseX;
             view.GraphPane.YAxis.Scale.IsReverse = controller.ReverseY;
-            barSettings = view.GraphPane.BarSettings;
-            barSettings.Base = controller.BaseAxis;
-            barSettings.Type = controller.BarType;
 
-            if (controller.Min.HasValue || controller.Max.HasValue)
+            if (controller.XMin.HasValue || controller.XMax.HasValue)
             {
-                view.AutoScale = false;
-                view.AutoScaleVisible = false;
-                view.Min = controller.Min.GetValueOrDefault();
-                view.Max = controller.Max.GetValueOrDefault();
+                view.AutoScaleX = false;
+                view.AutoScaleXVisible = false;
+                view.XMin = controller.XMin.GetValueOrDefault();
+                view.XMax = controller.XMax.GetValueOrDefault();
             }
             else
             {
-                view.AutoScale = AutoScale;
-                if (!AutoScale)
+                view.AutoScaleX = AutoScaleX;
+                if (!AutoScaleX)
                 {
-                    view.Min = Min;
-                    view.Max = Max;
+                    view.XMin = XMin;
+                    view.XMax = XMax;
+                }
+            }
+
+            if (controller.YMin.HasValue || controller.YMax.HasValue)
+            {
+                view.AutoScaleY = false;
+                view.AutoScaleYVisible = false;
+                view.YMin = controller.YMin.GetValueOrDefault();
+                view.YMax = controller.YMax.GetValueOrDefault();
+            }
+            else
+            {
+                view.AutoScaleY = AutoScaleY;
+                if (!AutoScaleY)
+                {
+                    view.YMin = YMin;
+                    view.YMax = YMax;
                 }
             }
 
@@ -139,13 +138,14 @@ namespace Bonsai.Gui.Visualizers
             view.Dock = DockStyle.Fill;
             view.HandleDestroyed += delegate
             {
-                Min = view.Min;
-                Max = view.Max;
-                AutoScale = view.AutoScale;
+                XMin = view.XMin;
+                XMax = view.XMax;
+                YMin = view.YMin;
+                YMax = view.YMax;
+                AutoScaleX = view.AutoScaleX;
                 Capacity = view.Capacity;
                 Span = view.Span;
             };
-            graphBuilder = builder;
             return view;
         }
 
@@ -160,9 +160,6 @@ namespace Bonsai.Gui.Visualizers
         public override void Unload()
         {
             base.Unload();
-            indexType = null;
-            barSettings = null;
-            graphBuilder = null;
         }
     }
 }
