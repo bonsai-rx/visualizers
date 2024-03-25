@@ -1,6 +1,7 @@
 ﻿using Bonsai.Expressions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
@@ -17,6 +18,13 @@ namespace Bonsai.Gui.Visualizers
     [Description("A visualizer that plots each element of the sequence as a line graph.")]
     public class LineGraphBuilder : SingleArgumentExpressionBuilder
     {
+        /// <summary>
+        /// Gets or sets the name of the property that will be used as index for the graph.
+        /// </summary>
+        [Editor("Bonsai.Design.MemberSelectorEditor, Bonsai.Design", DesignTypes.UITypeEditor)]
+        [Description("The name of the property that will be used as index for the graph.")]
+        public string IndexSelector { get; set; }
+
         /// <summary>
         /// Gets or sets the names of the properties to be displayed in the graph.
         /// Each selected property must have a point pair compatible type.
@@ -38,6 +46,13 @@ namespace Bonsai.Gui.Visualizers
         [Category(nameof(CategoryAttribute.Appearance))]
         [Description("The width, in points, to be used for the line graph. Use a value of zero to hide the line.")]
         public float LineWidth { get; set; } = 1;
+
+        /// <summary>
+        /// Gets the optional settings for each line added to the graph.
+        /// </summary>
+        [Category(nameof(CategoryAttribute.Appearance))]
+        [Description("Specifies optional settings for each line added to the graph.")]
+        public Collection<CurveConfiguration> CurveSettings { get; } = new();
 
         /// <summary>
         /// Gets or sets the optional capacity used for rolling line graphs. If no capacity is specified, all data points will be displayed.
@@ -87,11 +102,14 @@ namespace Bonsai.Gui.Visualizers
             internal double? XMax;
             internal double? YMin;
             internal double? YMax;
+            internal Type IndexType;
+            internal string IndexLabel;
             internal bool LabelAxes;
             internal string[] ValueLabels;
             internal SymbolType SymbolType;
             internal float LineWidth;
-            internal Action<object, LineGraphVisualizer> AddValues;
+            internal CurveConfiguration[] CurveSettings;
+            internal Action<DateTime, object, ILineGraphVisualizer> AddValues;
         }
 
         /// <summary>
@@ -103,8 +121,9 @@ namespace Bonsai.Gui.Visualizers
         {
             var source = arguments.First();
             var parameterType = source.Type.GetGenericArguments()[0];
+            var timeParameter = Expression.Parameter(typeof(DateTime));
             var valueParameter = Expression.Parameter(typeof(object));
-            var viewParameter = Expression.Parameter(typeof(LineGraphVisualizer));
+            var viewParameter = Expression.Parameter(typeof(ILineGraphVisualizer));
             var elementVariable = Expression.Variable(parameterType);
             Controller = new VisualizerController
             {
@@ -114,8 +133,16 @@ namespace Bonsai.Gui.Visualizers
                 YMin = YMin,
                 YMax = YMax,
                 SymbolType = SymbolType,
-                LineWidth = LineWidth
+                LineWidth = LineWidth,
+                CurveSettings = CurveSettings.ToArray()
             };
+
+            var selectedIndex = GraphHelper.SelectIndexMember(timeParameter, elementVariable, IndexSelector, out Controller.IndexLabel);
+            Controller.IndexType = selectedIndex.Type;
+            if (selectedIndex.Type != typeof(double) && selectedIndex.Type != typeof(string))
+            {
+                selectedIndex = Expression.Convert(selectedIndex, typeof(double));
+            }
 
             var selectedValues = GraphHelper.SelectDataPoints(
                 elementVariable,
@@ -124,8 +151,12 @@ namespace Bonsai.Gui.Visualizers
                 out Controller.LabelAxes);
             var addValuesBody = Expression.Block(new[] { elementVariable },
                 Expression.Assign(elementVariable, Expression.Convert(valueParameter, parameterType)),
-                Expression.Call(viewParameter, nameof(LineGraphVisualizer.AddValues), null, selectedValues));
-            Controller.AddValues = Expression.Lambda<Action<object, LineGraphVisualizer>>(addValuesBody, valueParameter, viewParameter).Compile();
+                Expression.Call(viewParameter, nameof(ILineGraphVisualizer.AddValues), null, selectedIndex, selectedValues));
+            Controller.AddValues = Expression.Lambda<Action<DateTime, object, ILineGraphVisualizer>>(
+                addValuesBody,
+                timeParameter,
+                valueParameter,
+                viewParameter).Compile();
             return Expression.Call(typeof(LineGraphBuilder), nameof(Process), new[] { parameterType }, source);
         }
 
@@ -133,5 +164,10 @@ namespace Bonsai.Gui.Visualizers
         {
             return source;
         }
+    }
+
+    interface ILineGraphVisualizer
+    {
+        void AddValues(double index, params PointPair[] values);
     }
 }

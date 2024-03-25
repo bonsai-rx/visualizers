@@ -11,7 +11,7 @@ namespace Bonsai.Gui.Visualizers
     /// <summary>
     /// Provides a type visualizer to display an object as a line graph.
     /// </summary>
-    public class LineGraphVisualizer : BufferedVisualizer
+    public class LineGraphVisualizer : BufferedVisualizer, ILineGraphVisualizer
     {
         LineGraphBuilder.VisualizerController controller;
         LineGraphView view;
@@ -55,7 +55,7 @@ namespace Bonsai.Gui.Visualizers
         /// </summary>
         public bool AutoScaleY { get; set; } = true;
 
-        internal void AddValues(PointPair[] values)
+        void ILineGraphVisualizer.AddValues(double index, params PointPair[] values)
         {
             if (view.Graph.NumSeries != values.Length || reset)
             {
@@ -65,7 +65,7 @@ namespace Bonsai.Gui.Visualizers
                     reset);
                 reset = false;
             }
-            view.Graph.AddValues(values);
+            view.Graph.AddValues(index, values);
         }
 
         /// <inheritdoc/>
@@ -158,12 +158,6 @@ namespace Bonsai.Gui.Visualizers
         }
 
         /// <inheritdoc/>
-        public override void Show(object value)
-        {
-            controller.AddValues(value, this);
-        }
-
-        /// <inheritdoc/>
         protected override void ShowBuffer(IList<Timestamped<object>> values)
         {
             base.ShowBuffer(values);
@@ -171,6 +165,18 @@ namespace Bonsai.Gui.Visualizers
             {
                 view.Graph.Invalidate();
             }
+        }
+
+        /// <inheritdoc/>
+        public override void Show(object value)
+        {
+            Show(DateTime.Now, value);
+        }
+
+        /// <inheritdoc/>
+        protected override void Show(DateTime time, object value)
+        {
+            controller.AddValues(time, value, this);
         }
 
         /// <inheritdoc/>

@@ -176,11 +176,11 @@ namespace Bonsai.Gui.Visualizers
             }
         }
 
-        public void AddValues(params PointPair[] values)
+        public void AddValues(double index, params PointPair[] values)
         {
             for (int i = 0; i < series.Length; i++)
             {
-                series[i].Add(values[i]);
+                series[i].Add(values[i].X, values[i].Y, index, values[i].Tag);
             }
         }
 
