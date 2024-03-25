@@ -141,7 +141,7 @@ namespace Bonsai.Gui.Visualizers
         /// <inheritdoc/>
         protected override void Show(DateTime time, object value)
         {
-            controller.AddValues(value, this);
+            controller.AddValues(time, value, this);
         }
 
         /// <inheritdoc/>

@@ -149,12 +149,6 @@ namespace Bonsai.Gui.Visualizers
         }
 
         /// <inheritdoc/>
-        public override void Show(object value)
-        {
-            controller.AddValues(value, this);
-        }
-
-        /// <inheritdoc/>
         protected override void ShowBuffer(IList<Timestamped<object>> values)
         {
             base.ShowBuffer(values);
@@ -162,6 +156,18 @@ namespace Bonsai.Gui.Visualizers
             {
                 view.Graph.Invalidate();
             }
+        }
+
+        /// <inheritdoc/>
+        public override void Show(object value)
+        {
+            Show(DateTime.Now, value);
+        }
+
+        /// <inheritdoc/>
+        protected override void Show(DateTime time, object value)
+        {
+            controller.AddValues(time, value, this);
         }
 
         /// <inheritdoc/>

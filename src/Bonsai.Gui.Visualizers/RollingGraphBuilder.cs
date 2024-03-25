@@ -124,11 +124,11 @@ namespace Bonsai.Gui.Visualizers
             }
 
             var selectedValues = GraphHelper.SelectDataValues(elementVariable, ValueSelector, out Controller.ValueLabels);
-            var showBody = Expression.Block(new[] { elementVariable },
+            var addValuesBody = Expression.Block(new[] { elementVariable },
                 Expression.Assign(elementVariable, Expression.Convert(valueParameter, parameterType)),
                 Expression.Call(viewParameter, nameof(IRollingGraphVisualizer.AddValues), null, selectedIndex, selectedValues));
             Controller.AddValues = Expression.Lambda<Action<DateTime, object, IRollingGraphVisualizer>>(
-                showBody,
+                addValuesBody,
                 timeParameter,
                 valueParameter,
                 viewParameter)

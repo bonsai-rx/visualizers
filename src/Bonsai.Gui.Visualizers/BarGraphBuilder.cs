@@ -89,7 +89,7 @@ namespace Bonsai.Gui.Visualizers
             internal string IndexLabel;
             internal string[] ValueLabels;
             internal CurveConfiguration[] CurveSettings;
-            internal Action<object, IBarGraphVisualizer> AddValues;
+            internal Action<DateTime, object, IBarGraphVisualizer> AddValues;
             internal BarBase BaseAxis;
             internal BarType BarType;
         }
@@ -103,6 +103,7 @@ namespace Bonsai.Gui.Visualizers
         {
             var source = arguments.First();
             var parameterType = source.Type.GetGenericArguments()[0];
+            var timeParameter = Expression.Parameter(typeof(DateTime));
             var valueParameter = Expression.Parameter(typeof(object));
             var viewParameter = Expression.Parameter(typeof(IBarGraphVisualizer));
             var elementVariable = Expression.Variable(parameterType);
@@ -116,7 +117,7 @@ namespace Bonsai.Gui.Visualizers
                 CurveSettings = CurveSettings.ToArray()
             };
 
-            var selectedIndex = GraphHelper.SelectIndexMember(elementVariable, IndexSelector, out Controller.IndexLabel);
+            var selectedIndex = GraphHelper.SelectIndexMember(timeParameter, elementVariable, IndexSelector, out Controller.IndexLabel);
             Controller.IndexType = selectedIndex.Type;
             if (selectedIndex.Type != typeof(double) && selectedIndex.Type != typeof(string))
             {
@@ -127,7 +128,11 @@ namespace Bonsai.Gui.Visualizers
             var addValuesBody = Expression.Block(new[] { elementVariable },
                 Expression.Assign(elementVariable, Expression.Convert(valueParameter, parameterType)),
                 Expression.Call(viewParameter, nameof(IBarGraphVisualizer.AddValues), null, selectedIndex, selectedValues));
-            Controller.AddValues = Expression.Lambda<Action<object, IBarGraphVisualizer>>(addValuesBody, valueParameter, viewParameter).Compile();
+            Controller.AddValues = Expression.Lambda<Action<DateTime, object, IBarGraphVisualizer>>(
+                addValuesBody,
+                timeParameter,
+                valueParameter,
+                viewParameter).Compile();
             return Expression.Call(typeof(BarGraphBuilder), nameof(Process), new[] { parameterType }, source);
         }
 
