@@ -23,7 +23,7 @@ namespace Bonsai.Gui
             propertyGrid.Site = new ServiceProviderContext(provider);
             propertyGrid.SubscribeTo(builder._HelpVisible, value => propertyGrid.HelpVisible = value);
             propertyGrid.SubscribeTo(builder._ToolbarVisible, value => propertyGrid.ToolbarVisible = value);
-            propertyGrid.SubscribeTo(builder._RefreshProperties, value =>
+            propertyGrid.SubscribeTo(builder._AutoRefresh, value =>
             {
                 if (value)
                 {
@@ -45,7 +45,7 @@ namespace Bonsai.Gui
         {
             var propertyGrid = (PropertyGrid)sender;
             var builder = (PropertyGridBuilder)propertyGrid.Tag;
-            if (builder._RefreshProperties.Value)
+            if (builder._AutoRefresh.Value)
             {
                 propertyGrid.Refresh();
             }
