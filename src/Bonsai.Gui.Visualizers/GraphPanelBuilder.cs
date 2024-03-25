@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Reactive.Linq;
 using System.Reactive;
-using Bonsai.Expressions;
 using ZedGraph;
 
 namespace Bonsai.Gui.Visualizers
@@ -14,15 +13,8 @@ namespace Bonsai.Gui.Visualizers
     /// </summary>
     [TypeVisualizer(typeof(GraphPanelVisualizer))]
     [Description("Specifies a mashup graph panel that can be used to combine multiple plots sharing the same axes.")]
-    public class GraphPanelBuilder : ZeroArgumentExpressionBuilder, INamedElement
+    public class GraphPanelBuilder : GraphPanelBuilderBase
     {
-        /// <summary>
-        /// Gets or sets the name of the visualizer window.
-        /// </summary>
-        [Category(nameof(CategoryAttribute.Design))]
-        [Description("The name of the visualizer window.")]
-        public string Name { get; set; }
-
         /// <summary>
         /// Gets or sets a value specifying the axis on which the bars in the graph will be displayed.
         /// </summary>
@@ -37,36 +29,6 @@ namespace Bonsai.Gui.Visualizers
         [Category(nameof(CategoryAttribute.Appearance))]
         [Description("Specifies how the different bars in the graph will be visually arranged.")]
         public BarType BarType { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value specifying whether the scale values are reversed on the X-axis.
-        /// </summary>
-        [Category(nameof(CategoryAttribute.Appearance))]
-        [Description("Specifies whether the scale values are reversed on the X-axis.")]
-        public bool ReverseX { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value specifying whether the scale values are reversed on the Y-axis.
-        /// </summary>
-        [Category(nameof(CategoryAttribute.Appearance))]
-        [Description("Specifies whether the scale values are reversed on the Y-axis.")]
-        public bool ReverseY { get; set; }
-
-        /// <summary>
-        /// Gets or sets the optional maximum span of data displayed at any one moment in the graph.
-        /// If no span is specified, all data points will be displayed.
-        /// </summary>
-        [Category("Range")]
-        [Description("The optional maximum span of data displayed at any one moment in the graph. " +
-                     "If no span is specified, all data points will be displayed.")]
-        public double? Span { get; set; }
-
-        /// <summary>
-        /// Gets or sets the optional capacity used for rolling line graphs. If no capacity is specified, all data points will be displayed.
-        /// </summary>
-        [Category("Range")]
-        [Description("The optional capacity used for rolling line graphs. If no capacity is specified, all data points will be displayed.")]
-        public int? Capacity { get; set; }
 
         /// <summary>
         /// Gets or sets a value specifying a fixed lower limit for the axis range.
