@@ -13,7 +13,7 @@ namespace Bonsai.Gui
     {
         internal readonly BehaviorSubject<bool> _HelpVisible = new(true);
         internal readonly BehaviorSubject<bool> _ToolbarVisible = new(true);
-        internal readonly BehaviorSubject<bool> _RefreshProperties = new(false);
+        internal readonly BehaviorSubject<bool> _AutoRefresh = new(false);
 
         /// <summary>
         /// Gets or sets a value specifying whether the help text box is visible.
@@ -43,10 +43,10 @@ namespace Bonsai.Gui
         /// </summary>
         [Category(nameof(CategoryAttribute.Behavior))]
         [Description("Specifies whether the property grid should refresh whenever the value of any property changes.")]
-        public bool RefreshProperties
+        public bool AutoRefresh
         {
-            get => _RefreshProperties.Value;
-            set => _RefreshProperties.OnNext(value);
+            get => _AutoRefresh.Value;
+            set => _AutoRefresh.OnNext(value);
         }
     }
 }
