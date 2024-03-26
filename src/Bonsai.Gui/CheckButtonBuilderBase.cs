@@ -7,7 +7,7 @@ namespace Bonsai.Gui
     /// <summary>
     /// Provides an abstract base class with common check button control functionality.
     /// </summary>
-    public class CheckButtonBuilderBase : ButtonBuilderBase<bool>
+    public abstract class CheckButtonBuilderBase : ButtonBuilderBase<bool>
     {
         internal readonly BehaviorSubject<bool> _Checked = new(false);
 
