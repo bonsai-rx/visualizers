@@ -14,7 +14,7 @@ namespace Bonsai.Gui
     /// Provides an abstract base class for interfacing with combo box and list box controls
     /// bound to each data source in an observable sequence.
     /// </summary>
-    public class ListControlDataSourceBuilderBase : DataSourceControlBuilderBase
+    public abstract class ListControlDataSourceBuilderBase : DataSourceControlBuilderBase
     {
         internal readonly BehaviorSubject<string> _DisplayMember = new(string.Empty);
         internal readonly BehaviorSubject<object> _DataSource = new(null);
