@@ -27,8 +27,13 @@ jobs:
       - name: Setup DocFX
         run: dotnet tool restore
 
+      - name: Setup Bonsai
+        working-directory: .bonsai
+        run: .\Setup.ps1
+
       - name: Build Documentation
-        run: dotnet docfx docs/docfx.json
+        working-directory: docs
+        run: .\build.ps1
           
       - name: Checkout gh-pages
         uses: actions/checkout@v4.1.1
