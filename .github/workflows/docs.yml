@@ -24,6 +24,9 @@ jobs:
       - name: Restore NuGet Packages
         run: msbuild -t:restore src\Bonsai.Gui.sln
 
+      - name: Build Solution
+        run: msbuild src/Bonsai.Gui.sln /p:Configuration=Release
+
       - name: Setup DocFX
         run: dotnet tool restore
 
