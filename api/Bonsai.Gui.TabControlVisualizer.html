@@ -1,0 +1,328 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class TabControlVisualizer | Bonsai.Gui </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class TabControlVisualizer | Bonsai.Gui ">
+      
+      <meta name="description" content="Provides a type visualizer that can be used to arrange other visualizers using a related set of tab pages.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/bonsai-rx/gui/new/main/docs/apidoc/new?filename=Bonsai_Gui_TabControlVisualizer.md&amp;value=---%0Auid%3A%20Bonsai.Gui.TabControlVisualizer%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Bonsai - GUI">
+            Bonsai - GUI
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Bonsai.Gui.TabControlVisualizer">
+
+
+
+  <h1 id="Bonsai_Gui_TabControlVisualizer" data-uid="Bonsai.Gui.TabControlVisualizer" class="text-break">
+Class TabControlVisualizer  <a class="header-action link-secondary" title="View source" href="https://github.com/bonsai-rx/gui/blob/main/src/Bonsai.Gui/TabControlVisualizer.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Bonsai.html">Bonsai</a>.<a class="xref" href="Bonsai.Gui.html">Gui</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Bonsai.Gui.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides a type visualizer that can be used to arrange other visualizers
+using a related set of tab pages.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TabControlVisualizer : ContainerControlVisualizerBase&lt;TabControl, TabControlBuilder&gt;</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://bonsai-rx.org/docs/api/Bonsai.Design.DialogTypeVisualizer.html">DialogTypeVisualizer</a></div>
+      <div><a class="xref" href="https://bonsai-rx.org/docs/api/Bonsai.Design.MashupVisualizer.html">MashupVisualizer</a></div>
+      <div><a class="xref" href="Bonsai.Gui.MashupControlVisualizerBase-2.html">MashupControlVisualizerBase</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.forms.tabcontrol">TabControl</a>, <a class="xref" href="Bonsai.Gui.TabControlBuilder.html">TabControlBuilder</a>&gt;</div>
+      <div><a class="xref" href="Bonsai.Gui.ContainerControlVisualizerBase-2.html">ContainerControlVisualizerBase</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.forms.tabcontrol">TabControl</a>, <a class="xref" href="Bonsai.Gui.TabControlBuilder.html">TabControlBuilder</a>&gt;</div>
+      <div><span class="xref">TabControlVisualizer</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="Bonsai.Gui.ContainerControlVisualizerBase-2.html#Bonsai_Gui_ContainerControlVisualizerBase_2_AddControl_System_Int32_System_Windows_Forms_Control_">ContainerControlVisualizerBase&lt;TabControl, TabControlBuilder&gt;.AddControl(int, Control)</a>
+    </div>
+    <div>
+      <a class="xref" href="Bonsai.Gui.ContainerControlVisualizerBase-2.html#Bonsai_Gui_ContainerControlVisualizerBase_2_LoadMashupSource_System_Int32_Bonsai_Design_MashupSource_System_IServiceProvider_">ContainerControlVisualizerBase&lt;TabControl, TabControlBuilder&gt;.LoadMashupSource(int, MashupSource, IServiceProvider)</a>
+    </div>
+    <div>
+      <a class="xref" href="Bonsai.Gui.ContainerControlVisualizerBase-2.html#Bonsai_Gui_ContainerControlVisualizerBase_2_UnloadMashups">ContainerControlVisualizerBase&lt;TabControl, TabControlBuilder&gt;.UnloadMashups()</a>
+    </div>
+    <div>
+      <a class="xref" href="Bonsai.Gui.ContainerControlVisualizerBase-2.html#Bonsai_Gui_ContainerControlVisualizerBase_2_GetMashupSource_System_Int32_System_Int32_">ContainerControlVisualizerBase&lt;TabControl, TabControlBuilder&gt;.GetMashupSource(int, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="Bonsai.Gui.MashupControlVisualizerBase-2.html#Bonsai_Gui_MashupControlVisualizerBase_2_Control">MashupControlVisualizerBase&lt;TabControl, TabControlBuilder&gt;.Control</a>
+    </div>
+    <div>
+      <a class="xref" href="Bonsai.Gui.MashupControlVisualizerBase-2.html#Bonsai_Gui_MashupControlVisualizerBase_2_CreateControl_System_IServiceProvider__1_">MashupControlVisualizerBase&lt;TabControl, TabControlBuilder&gt;.CreateControl(IServiceProvider, TabControlBuilder)</a>
+    </div>
+    <div>
+      <a class="xref" href="Bonsai.Gui.MashupControlVisualizerBase-2.html#Bonsai_Gui_MashupControlVisualizerBase_2_Load_System_IServiceProvider_">MashupControlVisualizerBase&lt;TabControl, TabControlBuilder&gt;.Load(IServiceProvider)</a>
+    </div>
+    <div>
+      <a class="xref" href="Bonsai.Gui.MashupControlVisualizerBase-2.html#Bonsai_Gui_MashupControlVisualizerBase_2_LoadMashups_System_IServiceProvider_">MashupControlVisualizerBase&lt;TabControl, TabControlBuilder&gt;.LoadMashups(IServiceProvider)</a>
+    </div>
+    <div>
+      <a class="xref" href="Bonsai.Gui.MashupControlVisualizerBase-2.html#Bonsai_Gui_MashupControlVisualizerBase_2_Show_System_Object_">MashupControlVisualizerBase&lt;TabControl, TabControlBuilder&gt;.Show(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="Bonsai.Gui.MashupControlVisualizerBase-2.html#Bonsai_Gui_MashupControlVisualizerBase_2_Visualize_System_IObservable_System_IObservable_System_Object___System_IServiceProvider_">MashupControlVisualizerBase&lt;TabControl, TabControlBuilder&gt;.Visualize(IObservable&lt;IObservable&lt;object&gt;&gt;, IServiceProvider)</a>
+    </div>
+    <div>
+      <a class="xref" href="Bonsai.Gui.MashupControlVisualizerBase-2.html#Bonsai_Gui_MashupControlVisualizerBase_2_Unload">MashupControlVisualizerBase&lt;TabControl, TabControlBuilder&gt;.Unload()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">MashupVisualizer.Load(IServiceProvider)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://bonsai-rx.org/docs/api/Bonsai.Design.MashupVisualizer.html#Bonsai_Design_MashupVisualizer_Unload">MashupVisualizer.Unload()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">MashupVisualizer.LoadMashups(IServiceProvider)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://bonsai-rx.org/docs/api/Bonsai.Design.MashupVisualizer.html#Bonsai_Design_MashupVisualizer_UnloadMashups">MashupVisualizer.UnloadMashups()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">MashupVisualizer.GetMashupSource(int, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://bonsai-rx.org/docs/api/Bonsai.Design.MashupVisualizer.html#Bonsai_Design_MashupVisualizer_MashupSources">MashupVisualizer.MashupSources</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">DialogTypeVisualizer.Show(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iobservable-1">DialogTypeVisualizer.Visualize(IObservable&lt;IObservable&lt;object&gt;&gt;, IServiceProvider)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://bonsai-rx.org/docs/api/Bonsai.Design.DialogTypeVisualizer.html#Bonsai_Design_DialogTypeVisualizer_SequenceCompleted">DialogTypeVisualizer.SequenceCompleted()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Bonsai_Gui_TabControlVisualizer_AddControl_" data-uid="Bonsai.Gui.TabControlVisualizer.AddControl*"></a>
+
+  <h3 id="Bonsai_Gui_TabControlVisualizer_AddControl_System_Int32_System_Windows_Forms_Control_" data-uid="Bonsai.Gui.TabControlVisualizer.AddControl(System.Int32,System.Windows.Forms.Control)">
+  AddControl(int, Control)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/bonsai-rx/gui/blob/main/src/Bonsai.Gui/TabControlVisualizer.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a control to the container at the specified index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void AddControl(int index, Control control)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The index of the control, following the order of visualizer sources.</p>
+</dd>
+    <dt><code>control</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.forms.control">Control</a></dt>
+    <dd><p>The control to add to the container.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Bonsai_Gui_TabControlVisualizer_CreateControl_" data-uid="Bonsai.Gui.TabControlVisualizer.CreateControl*"></a>
+
+  <h3 id="Bonsai_Gui_TabControlVisualizer_CreateControl_System_IServiceProvider_Bonsai_Gui_TabControlBuilder_" data-uid="Bonsai.Gui.TabControlVisualizer.CreateControl(System.IServiceProvider,Bonsai.Gui.TabControlBuilder)">
+  CreateControl(IServiceProvider, TabControlBuilder)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/bonsai-rx/gui/blob/main/src/Bonsai.Gui/TabControlVisualizer.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates and configures the mashup control associated with
+the specified workflow operator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override TabControl CreateControl(IServiceProvider provider, TabControlBuilder builder)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></dt>
+    <dd><p>A service provider object which can be used to obtain visualization,
+runtime inspection, or other editing services.</p>
+</dd>
+    <dt><code>builder</code> <a class="xref" href="Bonsai.Gui.TabControlBuilder.html">TabControlBuilder</a></dt>
+    <dd><p>The <a class="xref" href="https://bonsai-rx.org/docs/api/Bonsai.Expressions.ExpressionBuilder.html">ExpressionBuilder</a> object used to provide configuration
+properties to the mashup control.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.forms.tabcontrol">TabControl</a></dt>
+    <dd><p>A new instance of the mashup control class associated with the specified
+workflow operator.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/bonsai-rx/gui/blob/main/src/Bonsai.Gui/TabControlVisualizer.cs/#L16" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          &copy; 2024 Bonsai Foundation CIC and Contributors. Made with <a href="https://dotnet.github.io/docfx">docfx</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

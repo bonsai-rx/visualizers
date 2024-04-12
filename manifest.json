@@ -1,0 +1,778 @@
+{
+  "source_base_path": "D:/a/gui/gui/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ButtonBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ButtonBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ButtonBuilderBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ButtonBuilderBase-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ButtonVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ButtonVisualizer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.CheckBoxBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.CheckBoxBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.CheckBoxVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.CheckBoxVisualizer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.CheckButtonBuilderBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.CheckButtonBuilderBase.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ComboBoxBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ComboBoxBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ComboBoxDataSourceBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ComboBoxDataSourceBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ComboBoxDataSourceVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ComboBoxDataSourceVisualizer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ComboBoxVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ComboBoxVisualizer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ContainerControlVisualizerBase-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ContainerControlVisualizerBase-2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ControlBuilderBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ControlBuilderBase-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ControlBuilderBase-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ControlBuilderBase-2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ControlBuilderBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ControlBuilderBase.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ControlExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ControlExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ControlVisualizerBase-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ControlVisualizerBase-2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.DataSourceControlBuilderBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.DataSourceControlBuilderBase.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.GroupBoxBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.GroupBoxBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.GroupBoxVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.GroupBoxVisualizer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.LabelBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.LabelBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.LabelVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.LabelVisualizer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ListBoxBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ListBoxBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ListBoxDataSourceBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ListBoxDataSourceBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ListBoxDataSourceVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ListBoxDataSourceVisualizer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ListBoxVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ListBoxVisualizer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ListControlBuilderBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ListControlBuilderBase.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ListControlDataSourceBuilderBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ListControlDataSourceBuilderBase.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.MashupControlVisualizerBase-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.MashupControlVisualizerBase-2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.PropertyGridBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.PropertyGridBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.PropertyGridVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.PropertyGridVisualizer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.RadioButtonBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.RadioButtonBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.RadioButtonVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.RadioButtonVisualizer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.SliderBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.SliderBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.SliderVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.SliderVisualizer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.TabControlBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.TabControlBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.TabControlVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.TabControlVisualizer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.TableLayoutPanelBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.TableLayoutPanelBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.TableLayoutPanelCellSpan.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.TableLayoutPanelCellSpan.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.TableLayoutPanelVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.TableLayoutPanelVisualizer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.TextBoxBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.TextBoxBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.TextBoxVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.TextBoxVisualizer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.TextControlBuilderBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.TextControlBuilderBase-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.TextControlBuilderBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.TextControlBuilderBase.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ToggleButtonBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ToggleButtonBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ToggleButtonVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ToggleButtonVisualizer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ZedGraph.BarGraphBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ZedGraph.BarGraphBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ZedGraph.BarGraphOverlay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ZedGraph.BarGraphOverlay.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ZedGraph.BarGraphVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ZedGraph.BarGraphVisualizer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ZedGraph.CurveConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ZedGraph.CurveConfiguration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ZedGraph.GraphControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ZedGraph.GraphControl.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ZedGraph.GraphPanelBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ZedGraph.GraphPanelBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ZedGraph.GraphPanelBuilderBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ZedGraph.GraphPanelBuilderBase.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ZedGraph.GraphPanelVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ZedGraph.GraphPanelVisualizer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ZedGraph.LineGraphBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ZedGraph.LineGraphBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ZedGraph.LineGraphOverlay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ZedGraph.LineGraphOverlay.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ZedGraph.LineGraphVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ZedGraph.LineGraphVisualizer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ZedGraph.RollingGraphBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ZedGraph.RollingGraphBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ZedGraph.RollingGraphOverlay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ZedGraph.RollingGraphOverlay.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ZedGraph.RollingGraphPanelBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ZedGraph.RollingGraphPanelBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ZedGraph.RollingGraphPanelVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ZedGraph.RollingGraphPanelVisualizer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ZedGraph.RollingGraphVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ZedGraph.RollingGraphVisualizer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.ZedGraph.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.ZedGraph.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bonsai.Gui.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bonsai.Gui.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html"
+        },
+        ".json": {
+          "relative_path": "articles/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "favicon.ico",
+      "output": {
+        "resource": {
+          "relative_path": "favicon.ico"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/basic_controls.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/basic_controls.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/basic_graphs.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/basic_graphs.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/container_controls.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/container_controls.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/graph_panels.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/graph_panels.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "logo.svg",
+      "output": {
+        "resource": {
+          "relative_path": "logo.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/gui-demo.bonsai",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/gui-demo.bonsai"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/gui-demo.svg",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/gui-demo.svg"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
