@@ -41,6 +41,10 @@ namespace Bonsai.Gui.ZedGraph
 
         protected override void OnInvalidated(InvalidateEventArgs e)
         {
+            if (GraphPane is null)
+            {
+                return;
+            }
             double? maxValue = null;
             var curveList = GraphPane.CurveList;
             for (int i = 0; i < curveList.Count; i++)
