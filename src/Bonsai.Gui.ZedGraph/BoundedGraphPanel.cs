@@ -45,6 +45,7 @@ namespace Bonsai.Gui.ZedGraph
             {
                 return;
             }
+
             double? maxValue = null;
             var curveList = GraphPane.CurveList;
             for (int i = 0; i < curveList.Count; i++)
