@@ -35,6 +35,7 @@
         ]
       }
     ],
+    "output": "_site",
     "overwrite": [
       {
         "files": [
