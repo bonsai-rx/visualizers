@@ -10,7 +10,9 @@
         }
       ],
       "dest": "api",
-      "filter": "filter.yml"
+      "filter": "filter.yml",
+      "enumSortOrder": "declaringOrder",
+      "memberLayout": "separatePages"
     }
   ],
   "build": {
@@ -21,7 +23,6 @@
         ],
         "exclude": [
           "_site/**",
-          "bonsai/**",
           "filter.yml"
         ]
       }
@@ -29,14 +30,11 @@
     "resource": [
       {
         "files": [
-          "logo.svg",
-          "favicon.ico",
           "images/**",
           "workflows/**"
         ]
       }
     ],
-    "output": "_site",
     "overwrite": [
       {
         "files": [
