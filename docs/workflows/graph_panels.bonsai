@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.8.5"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:zg="clr-namespace:Bonsai.Gui.ZedGraph;assembly=Bonsai.Gui.ZedGraph"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="zg:GraphPanelBuilder">
+        <zg:ReverseX>false</zg:ReverseX>
+        <zg:ReverseY>false</zg:ReverseY>
+        <zg:Span xsi:nil="true" />
+        <zg:Capacity xsi:nil="true" />
+        <zg:XMin xsi:nil="true" />
+        <zg:XMax xsi:nil="true" />
+        <zg:YMin xsi:nil="true" />
+        <zg:YMax xsi:nil="true" />
+      </Expression>
+      <Expression xsi:type="zg:RollingGraphPanelBuilder">
+        <zg:ReverseX>false</zg:ReverseX>
+        <zg:ReverseY>false</zg:ReverseY>
+        <zg:Span xsi:nil="true" />
+        <zg:Capacity xsi:nil="true" />
+        <zg:BaseAxis>X</zg:BaseAxis>
+        <zg:BarType>Cluster</zg:BarType>
+        <zg:Min xsi:nil="true" />
+        <zg:Max xsi:nil="true" />
+      </Expression>
+    </Nodes>
+    <Edges />
+  </Workflow>
+</WorkflowBuilder>

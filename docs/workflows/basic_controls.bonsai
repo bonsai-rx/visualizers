@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.8.5"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:gui="clr-namespace:Bonsai.Gui;assembly=Bonsai.Gui"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="gui:ButtonBuilder">
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:Text />
+      </Expression>
+      <Expression xsi:type="gui:CheckBoxBuilder">
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:Text />
+        <gui:Checked>false</gui:Checked>
+      </Expression>
+      <Expression xsi:type="gui:ComboBoxBuilder">
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:Items />
+        <gui:SelectedItem />
+      </Expression>
+      <Expression xsi:type="gui:LabelBuilder">
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:Text />
+      </Expression>
+      <Expression xsi:type="gui:ListBoxBuilder">
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:Items />
+        <gui:SelectedItem />
+      </Expression>
+      <Expression xsi:type="gui:PropertyGridBuilder">
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:HelpVisible>true</gui:HelpVisible>
+        <gui:ToolbarVisible>true</gui:ToolbarVisible>
+        <gui:AutoRefresh>false</gui:AutoRefresh>
+      </Expression>
+      <Expression xsi:type="gui:RadioButtonBuilder">
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:Text />
+        <gui:Checked>false</gui:Checked>
+      </Expression>
+      <Expression xsi:type="gui:SliderBuilder">
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:Minimum>0</gui:Minimum>
+        <gui:Maximum>100</gui:Maximum>
+        <gui:DecimalPlaces xsi:nil="true" />
+        <gui:Value>0</gui:Value>
+      </Expression>
+      <Expression xsi:type="gui:TextBoxBuilder">
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:Text />
+        <gui:Multiline>true</gui:Multiline>
+      </Expression>
+      <Expression xsi:type="gui:ToggleButtonBuilder">
+        <gui:Enabled>true</gui:Enabled>
+        <gui:Visible>true</gui:Visible>
+        <gui:Text />
+        <gui:Checked>false</gui:Checked>
+      </Expression>
+    </Nodes>
+    <Edges />
+  </Workflow>
+</WorkflowBuilder>
